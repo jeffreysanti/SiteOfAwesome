@@ -1,0 +1,20 @@
+/* 
+ * Sets basic CSS Stuff -> only used for error pages & stuff
+ */
+
+ 
+ body {
+     background-color: #ebe9e9;
+ }
+ 
+ h1 {
+     color:#454141;
+ }
+ 
+ .error{
+     color: red;
+ }
+root { 
+    display: block;
+}
+

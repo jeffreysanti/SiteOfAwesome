@@ -1,16 +1,13 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title></title>
-    </head>
-    <body>
-        <?php
-        
-        // put your code here
-        // 
-        // TEST CHANGE
-        // another random change
-        ?>
-    </body>
-</html>
+<?php
+    // main index file for SiteOfAwesome -> If this is reached there may
+    // be a problem with the server config
+
+if(defined("SOA_ROOT"))
+{
+    // this should not occur
+    soa_error("Index.php included by something.");
+}
+
+// otherwise:: perhaps server rewrite disabled
+require("page.php");
+?>
