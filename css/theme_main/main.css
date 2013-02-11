@@ -1,0 +1,135 @@
+/* 
+    Document   : theme_main
+    Created on : Feb 5, 2013, 4:59:39 PM
+    Author     : Jeffrey
+    Description:
+        Purpose of the stylesheet follows.
+*/
+root { 
+    display: block;
+}
+
+body {
+    background-color: #f4f4f4;
+    font-family: Georgia,'Times New Roman',times,serif;
+    font-size: 14px;
+    height: 100%;
+    margin: 0px;
+}
+
+
+/* LOGIN PAGE */
+#login_page {
+    position: absolute;
+    background-color: #f2f2f2;
+    font-size: 20px;
+    top: 50%;
+    height: 90px;
+    margin-top: -95px; /* Half of the height inc padding */
+    left: 50%;
+    width:280px;
+    margin-left: -190px; /* Half of the height inc padding */
+    padding: 50px;
+    border: solid 1px #999999;
+    border-radius: 4px;
+}
+#login_pagef1{position: absolute; top:50px; left:50px;}
+#login_pagef2{top:50px;right:50px;}
+#login_pagef3{position: absolute; top:80px; left:50px;}
+#login_pagef4{top:80px;right:50px;}
+#login_pagef5{left:50px; top:110px; width: 280px; height:26px;}
+#login_page input{
+    background-color: #f9f4f4;
+    border-color: black;
+    border-style: solid;
+    border-width: thin;
+    padding: 3px;
+    width: 170px;
+    height: 20px;
+    position: absolute;
+}
+
+#topHeader{
+    width: 100%;
+    background-color: #3f3f3f;
+    height: 30px;
+    color: white;
+    text-align: center;
+    font-size: 26px;
+}
+
+#btmFooter{
+    width: 100%;
+    background-color: #3f3f3f;
+    height: 30px;
+    color: white;
+    text-align: center;
+    font-size: 26px;
+    bottom: 0px;
+    position: absolute;
+}
+
+.leftMenu{
+    width: 200px;
+    background-color: #3f3f3f;
+    top:30px;
+    bottom:30px;
+    position: absolute;
+    float: left;
+}
+
+.leftMenu ul{
+    padding:0px;
+    margin:0px;
+    font-size:15px;
+    color:#FFF;
+    list-style:none;
+    text-indent:15px;
+}
+.leftMenu ul li.sub{
+    text-indent: 30px;
+}
+.leftMenu ul li{
+    background:#3f3f3f;
+    line-height:28px;
+    border-bottom:1px solid #333;
+}
+.leftMenu ul li a{
+    text-decoration:none;
+    color:#FFF;
+    display:block;
+}
+.leftMenu ul li a:hover{
+    background:#d40203;
+}
+.leftMenu ul li#active{
+    background:#d40203;
+}
+
+
+
+
+
+
+
+
+
+
+#content {
+    width: 80%;
+    background-color: #f2f2f2;
+    border-left-style: solid;
+    border-right-style: solid;
+    border-left-width: 1px;
+    border-right-width: 1px;
+    border-left-color: #999999;
+    border-right-color: #999999;
+    margin-left:auto;
+    margin-right:auto;
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+

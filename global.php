@@ -6,28 +6,66 @@
 // CONFIG INDEPENDENT DEFENITIONS
 define("NL", "\r\n");
 
-function checkForDataRedirect(array $params) // checks if a page is requesting a datafile
+function ReportNotFound($params)
+{
+    soa_error("Requsted object not found:".implode("/", $params), false);
+}
+
+function checkForDataRedirect(array $params, $noCare=false) // checks if a page is requesting a datafile
 {
     // we need to make sure this isn't a data file requested
     // check if it is a CSS/Image File
     // then find the file on disk
     // set content-type header so browser recongizes it :)
-    $types = array("css", "test");
+    
+    // This function is a bit confuseing
+    // it is only called when rewrite is enabled to request a datafile
+    // for instance a linked image or css document will be under root/--type--/file
+    // without rewrite it will be directly linked; with rewrite it will be caught
+    // by this function
+    // assumes params structure like so: "--type--" ( / "--dir--" )*x / "--file--"
+    // type is always element 1 ($value)
+    // from element 2->infinity: is the directory path to it
+    // fl is set to this path by imploading the array {2..} with "/" delimeters
+    if(count($params) < 2)
+	return;
+    $params = array_values($params); // reindex
+    $types = array("css", "test", "img");
     foreach ($params as $key => $value) {
 	if(in_array($value, $types))
 	{
-	    if(file_exists($value . "/" . $params[$key+1]))
+	    $fl = implode("/", array_slice($params, $key+1));
+	    if(file_exists($value . "/" . $fl))
 	    {
 		if($value == "css")
 		    header ("content-type:text/css");
-		include($value . "/" . $params[$key+1]);
+		if($value == "img")
+		    header ("content-type:image/png");
+		include($value . "/" . $fl);
 	    }
 	    else
 	    {
-		soa_error("Request failed:: type:".$value." string:".implode("/", $params), false);
+		if($value == "css")
+		{
+		    header ("content-type:text/css");
+		    include("css/core.css"); // output default css
+		    soa_error("CSS NOT FOUND: ".implode("/", $params), false, false, true); //non-fatal log
+		}
+		elseif($value == "test")
+		{
+		    include("core/notfound.php"); // show message to user
+		    ReportNotFound($params); // log it
+		}
+		else
+		{
+		    ReportNotFound($params); // log it
+		}
+
 	    }
-	    die();
+	    die(); // if something could have existed, it will not continue
 	}
+	if(!$noCare) // noCare will override the first parameter requirement
+	    return;
     }
 }
 
@@ -62,7 +100,7 @@ else
 {
     $uri = strtolower($_SERVER['REQUEST_URI']);
     $params = explode("/", $uri);
-    checkForDataRedirect($params);
+    checkForDataRedirect($params, true); // check with noCare (no first param requirement)
     include("installer.php"); // show installation webpage
     soa_error("Missing Config", false);
 }
