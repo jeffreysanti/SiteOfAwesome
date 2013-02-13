@@ -10,3 +10,5 @@ Sat, 09 Feb 2013 20:40:02 :: Missing Config
 Sat, 09 Feb 2013 20:40:10 :: Missing Config
 Mon, 11 Feb 2013 19:55:17 :: Requsted object not found:test/a.htm
 Mon, 11 Feb 2013 19:55:35 :: Requsted object not found:test/a.htm
+Wed, 13 Feb 2013 04:31:04 :: Requsted object not found:test/admin_look.html
+Wed, 13 Feb 2013 04:58:22 :: Requsted object not found:img/del.png

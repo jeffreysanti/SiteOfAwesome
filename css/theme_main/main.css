@@ -52,19 +52,21 @@ body {
 #topHeader{
     width: 100%;
     background-color: #3f3f3f;
-    height: 30px;
+    height: 20px;
     color: white;
+    font-weight: bold;
     text-align: center;
-    font-size: 26px;
+    font-size: 18px;
 }
 
 #btmFooter{
     width: 100%;
     background-color: #3f3f3f;
-    height: 30px;
+    height: 15px;
     color: white;
     text-align: center;
-    font-size: 26px;
+    font-size: 10px;
+    font-style: italic;
     bottom: 0px;
     position: absolute;
 }
@@ -72,8 +74,8 @@ body {
 .leftMenu{
     width: 200px;
     background-color: #3f3f3f;
-    top:30px;
-    bottom:30px;
+    top:20px;
+    bottom:15px;
     position: absolute;
     float: left;
 }
@@ -88,6 +90,7 @@ body {
 }
 .leftMenu ul li.sub{
     text-indent: 30px;
+    font-size: 12px;
 }
 .leftMenu ul li{
     background:#3f3f3f;
@@ -106,7 +109,46 @@ body {
     background:#d40203;
 }
 
+.mainContenet{
+    position: absolute;
+    left: 200px;
+    top: 20px;
+    right: 0px;
+    bottom:15px;
+    margin: 20px 20px 20px 20px;
+}
+.settingSection{
+    margin: 0px 0px 0px 0px;
+    /*border: 1px solid #3f3f3f;*/
+    border-bottom: 3px solid #3f3f3f;
+    border-right: 3px solid #3f3f3f;
+    border-top: 1px solid #3f3f3f;
+    border-left: 1px solid #3f3f3f;
+    background-color: #cacaca;
+    font-size: 30px;
+    color: #3f3f3f;
+    text-align: right;
+    width: 100%;
+}
 
+.saveChangesBtn input{
+    margin: 0px 0px 0px 0px;
+    border: 3px solid #3f3f3f;
+    background-color: #cacaca;
+    width: 100%;
+    font-size: 25px;
+}
+table{
+    border-collapse:collapse;
+}
+table, th, td{
+    border: 1px solid #3f3f3f;
+}
+
+select{
+    background-color: #cacaca;
+    border: 2	px solid #3f3f3f;
+}
 
 
 
