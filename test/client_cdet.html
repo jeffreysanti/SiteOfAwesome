@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Harvard - Client Details - Site Of Awesome</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <link rel="stylesheet" type="text/css" href="/siteofawesome/css/theme_main/main.css" />
+    </head>
+    <body>
+        <table id="container">
+        <tr><td id="tbl_top" valign="top">
+            <div id="header">
+                <span id="header_h1">SiteOfAwesome</span><br/>	
+                <span id="header_h2">Editor</span><br /><br />
+                <br />
+                <div id="header_menuloc">
+                    SiteOfAwesome &nbsp;&nbsp;&nbsp;&ShortRightArrow;&nbsp;&nbsp;&nbsp;
+                    Clients &nbsp;&nbsp;&nbsp;&ShortRightArrow;&nbsp;&nbsp;&nbsp;
+                    Harvard
+                </div>
+            </div>
+            <div id="content"><form method="post">
+                <span class="content_h1">Configuration</span><br/><br />
+                <span class="content_h2">General</span><br/><br />
+                <table>
+                <tr>
+                    <td><div class="content_field">Client Name: Harvard &ShortRightArrow; </div></td>
+                    <td><input type="text" name="clientname" value="Harvard" /></td>
+                </tr>
+                <tr>
+                    <td><div class="content_field">Username: harvard &ShortRightArrow; </div></td>
+                    <td><input type="text" name="username" value="harvard" /></td>
+                </tr>
+                <tr>
+                    <td><div class="content_field">Password: dstge4s &ShortRightArrow; </div></td>
+                    <td><input type="text" name="clientpass" value="dstge4s" /></td>
+                </tr>
+                </table><br />
+
+                <span class="content_h2">Group Membership</span><br/><br />
+                <div class="innerBorder"><table>
+                    <tr>
+                        <th>Group</th>
+                        <th>Member</th>
+                    </tr>
+                    <tr>
+                        <td><a href="/siteofawesome/test/client_gdet.html">Schools</a></td>
+                        <td align="center"><input type="checkbox" value="1" name="gm" checked /></td>
+                    </tr>
+                    <tr>
+                        <td><a href="#">Show-Art</a></td>
+                        <td align="center"><input type="checkbox" value="2" name="gm" checked /></td>
+                    </tr>
+                    <tr>
+                        <td><a href="#">Job Interviewers</a></td>
+                        <td align="center"><input type="checkbox" value="3" name="gm" /></td>
+                    </tr>
+                </table></div><br />
+
+                <span class="content_h2">Resource Access</span><br/><br />
+                <div class="innerBorder"><table>
+                    <tr>
+                        <th>Resource Name</th>
+                        <th>Tag(s)</th>
+                        <th>Block</th>
+                    </tr>
+                    <tr>
+                        <th><a href="#">Inherited</a></th>
+                        <th>Explicitly Allowed for Group; Implicitly Allowed for Client</th>
+                        <th align="center"><input type="checkbox" disabled="disabled" /></th>
+                    </tr>
+                    <tr class="added">
+                        <th><a href="#">Added</a></th>
+                        <th>Explicitly Allowed for Client</th>
+                        <th align="center"><input type="checkbox" disabled="disabled" /></th>
+                    </tr>
+                    <tr class="blocked">
+                        <th><a href="#">Blocked</a></th>
+                        <th>Explicitly Blocked for Client</th>
+                        <th align="center"><input type="checkbox" checked disabled="disabled" /></th>
+                    </tr>
+                    <tr class="divide"><td></td><td></td><td></td></tr>
+                    <tr>
+                        <td><a href="/siteofawesome/test/client_ent.html">SiteOfAwesome</a></td>
+                        <td>Project, Extracurricular, Website, PHP</td>
+                        <td align="center"><input type="checkbox" value="1" name="rme" /></td>
+                    </tr>
+                </table></div><br />
+
+                <span class="content_h2">Done:</span><br/>
+                <div id="content_submit"><input type="submit" name="submit" value="Update" /></div>
+                <div class="content_linkbtn"><a href="/siteofawesome/test/client_main.html">Cancel</a></div>
+                <div class="content_linkbtn"><a href="#">SUDO</a></div>
+            </form></div>
+        </td></tr>
+        <tr><td id="tbl_bottom" valign="bottom">
+            <div id="footer">
+                SiteOfAwesome &COPY; 2013 Jeffrey Santi
+            </div>
+        </td></tr>
+        </table>
+    </body>
+</html>
