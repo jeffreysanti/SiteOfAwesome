@@ -1,0 +1,129 @@
+/* 
+    Document   : admin
+    Created on : Feb 17, 2013, 2:09:15 AM
+    Author     : Jeffrey
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+root { 
+    display: block;
+}
+
+* { padding:0; margin:0; }
+
+html, body{
+    background-color: #f4f4f4;
+    font-family: Georgia,'Times New Roman',times,serif;
+    font-size: 14px;
+    height: 100%;
+}
+#container{
+    height:100%;
+    border-collapse:collapse;
+    width: 100%;
+}
+
+#header{
+    background-color: #3f3f3f;
+    height: 25px;
+    color: white;
+    font-weight: bold;
+    text-align: center;
+    font-size: 18px;
+    width: 100%;
+}
+
+#content{
+}
+
+#footer{
+    width: 100%;
+    background-color: #3f3f3f;
+    color: white;
+    text-align: center;
+    font-size: 10px;
+    font-style: italic;
+    height: 15px;
+}
+
+#content_leftnav{
+    background-color: #3f3f3f;
+    float: left;
+    width: 150px;
+}
+#content_leftnav ul{
+    padding:0px;
+    margin:0px;
+    font-size:15px;
+    color:#FFF;
+    list-style:none;
+    text-indent:15px;
+}
+#content_leftnav ul li.sub{
+    text-indent: 30px;
+    font-size: 12px;
+}
+#content_leftnav ul li{
+    background:#3f3f3f;
+    line-height:28px;
+    border-bottom:1px solid #333;
+}
+#content_leftnav ul li a{
+    text-decoration:none;
+    color:#FFF;
+    display:block;
+}
+#content_leftnav ul li a:hover{
+    background:#d40203;
+}
+#content_leftnav ul li#active{
+    background:#d40203;
+}
+
+#content_main{
+    margin: 20px;
+    margin-left: 170px;
+}
+#content_main ol{
+    margin-left: 25px;
+}
+
+.sdivsion{
+    margin: 0px 0px 0px 0px;
+    /*border: 1px solid #3f3f3f;*/
+    border-bottom: 3px solid #3f3f3f;
+    border-right: 3px solid #3f3f3f;
+    border-top: 1px solid #3f3f3f;
+    border-left: 1px solid #3f3f3f;
+    background-color: #cacaca;
+    font-size: 30px;
+    color: #3f3f3f;
+    text-align: right;
+    width: 100%;
+}
+
+#save{
+    margin: 0px 0px 0px 0px;
+    border: 3px solid #3f3f3f;
+    background-color: #cacaca;
+    width: 100%;
+    font-size: 25px;
+}
+
+select{
+    background-color: #cacaca;
+    border: 2px solid #3f3f3f;
+}
+input{
+    background-color: #cacaca;
+    border: 2px solid #3f3f3f;
+}
+
+.innerBorder table{
+    border-collapse:collapse;
+}
+.innerBorder table, .innerBorder th, .innerBorder td{
+    border: 1px solid #3f3f3f;
+}
+

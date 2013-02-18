@@ -1,0 +1,50 @@
+/* 
+    Document   : login
+    Created on : Feb 17, 2013, 2:12:11 AM
+    Author     : Jeffrey
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+root { 
+    display: block;
+}
+
+body{
+    background-color: #f4f4f4;
+    font-family: Georgia,'Times New Roman',times,serif;
+    font-size: 14px;
+    height: 100%;
+    margin: 0px;
+}
+
+#login_page {
+    position: absolute;
+    background-color: #f2f2f2;
+    font-size: 20px;
+    top: 50%;
+    height: 90px;
+    margin-top: -95px; /* Half of the height inc padding */
+    left: 50%;
+    width:280px;
+    margin-left: -190px; /* Half of the height inc padding */
+    padding: 50px;
+    border: solid 1px #999999;
+    border-radius: 4px;
+}
+#login_pagef1{position: absolute; top:50px; left:50px;}
+#login_pagef2{top:50px;right:50px;}
+#login_pagef3{position: absolute; top:80px; left:50px;}
+#login_pagef4{top:80px;right:50px;}
+#login_pagef5{left:50px; top:110px; width: 280px; height:26px;}
+#login_page input{
+    background-color: #f9f4f4;
+    border-color: black;
+    border-style: solid;
+    border-width: thin;
+    padding: 3px;
+    width: 170px;
+    height: 20px;
+    position: absolute;
+}
+

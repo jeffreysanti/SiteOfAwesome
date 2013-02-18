@@ -5,160 +5,39 @@
     Description:
         Purpose of the stylesheet follows.
 */
+
+/*----------------General Look-n-feel------------------*/
 root { 
     display: block;
 }
+* { padding:0; margin:0; }
+a{color: #9999ff;}
+table, tr, td{
+    border: none;
+}
 
-body {
+
+/*--------------------Layout--------------------------*/
+body, html {
     background-color: #f4f4f4;
     font-family: Georgia,'Times New Roman',times,serif;
     font-size: 14px;
     height: 100%;
-    margin: 0px;
-}
-
-
-/* LOGIN PAGE */
-#login_page {
-    position: absolute;
-    background-color: #f2f2f2;
-    font-size: 20px;
-    top: 50%;
-    height: 90px;
-    margin-top: -95px; /* Half of the height inc padding */
-    left: 50%;
-    width:280px;
-    margin-left: -190px; /* Half of the height inc padding */
-    padding: 50px;
-    border: solid 1px #999999;
-    border-radius: 4px;
-}
-#login_pagef1{position: absolute; top:50px; left:50px;}
-#login_pagef2{top:50px;right:50px;}
-#login_pagef3{position: absolute; top:80px; left:50px;}
-#login_pagef4{top:80px;right:50px;}
-#login_pagef5{left:50px; top:110px; width: 280px; height:26px;}
-#login_page input{
-    background-color: #f9f4f4;
-    border-color: black;
-    border-style: solid;
-    border-width: thin;
-    padding: 3px;
-    width: 170px;
-    height: 20px;
-    position: absolute;
-}
-
-#topHeader{
-    width: 100%;
-    background-color: #3f3f3f;
-    height: 20px;
-    color: white;
-    font-weight: bold;
-    text-align: center;
-    font-size: 18px;
-}
-
-#btmFooter{
-    width: 100%;
-    background-color: #3f3f3f;
-    height: 15px;
-    color: white;
-    text-align: center;
-    font-size: 10px;
-    font-style: italic;
-    bottom: 0px;
-    position: absolute;
-}
-
-.leftMenu{
-    width: 200px;
-    background-color: #3f3f3f;
-    top:20px;
-    bottom:15px;
-    position: absolute;
-    float: left;
-}
-
-.leftMenu ul{
-    padding:0px;
-    margin:0px;
-    font-size:15px;
-    color:#FFF;
-    list-style:none;
-    text-indent:15px;
-}
-.leftMenu ul li.sub{
-    text-indent: 30px;
-    font-size: 12px;
-}
-.leftMenu ul li{
-    background:#3f3f3f;
-    line-height:28px;
-    border-bottom:1px solid #333;
-}
-.leftMenu ul li a{
-    text-decoration:none;
-    color:#FFF;
-    display:block;
-}
-.leftMenu ul li a:hover{
-    background:#d40203;
-}
-.leftMenu ul li#active{
-    background:#d40203;
-}
-
-.mainContenet{
-    position: absolute;
-    left: 200px;
-    top: 20px;
-    right: 0px;
-    bottom:15px;
-    margin: 20px 20px 20px 20px;
-}
-.settingSection{
-    margin: 0px 0px 0px 0px;
-    /*border: 1px solid #3f3f3f;*/
-    border-bottom: 3px solid #3f3f3f;
-    border-right: 3px solid #3f3f3f;
-    border-top: 1px solid #3f3f3f;
-    border-left: 1px solid #3f3f3f;
-    background-color: #cacaca;
-    font-size: 30px;
-    color: #3f3f3f;
-    text-align: right;
     width: 100%;
 }
-
-.saveChangesBtn input{
-    margin: 0px 0px 0px 0px;
-    border: 3px solid #3f3f3f;
-    background-color: #cacaca;
-    width: 100%;
-    font-size: 25px;
+#tbl_top{
+    
 }
-table{
+#tbl_bottom{
+    
+}
+#container{
+    height:100%;
     border-collapse:collapse;
+    width: 100%;
 }
-table, th, td{
-    border: 1px solid #3f3f3f;
-}
-
-select{
-    background-color: #cacaca;
-    border: 2	px solid #3f3f3f;
-}
-
-
-
-
-
-
-
-
-#content {
-    width: 80%;
+#header {
+    width: 95%;
     background-color: #f2f2f2;
     border-left-style: solid;
     border-right-style: solid;
@@ -170,8 +49,142 @@ select{
     margin-right:auto;
     padding-left: 10px;
     padding-right: 10px;
-    margin-top: auto;
-    margin-bottom: auto;
+    padding-bottom: 20px;
 }
+#header_menu{
+    width: 100%;
+    background-color: #b2b2b2;
+    position: absolute;
+    right: 0px;
+    left: 0px;
+}
+#header_h1{
+    font-size: 40px;
+    font-family: Verdana,Arial,Helvetica,sans-serif;
+    font-weight: bold;
+    color: #9999ff;
+}
+#header_h2{
+    font-size: 25px;
+    font-family: Verdana,Arial,Helvetica,sans-serif;
+    font-style: italic;
+    color: #b2b2ff;
+}
+#header_menu{
+    
+}
+#header_menu ul{
+    list-style-type:none;
+    margin:0;
+    padding:0;
+    overflow:hidden;
+    width: 100%;
+}
+#header_menu li{
+    float:left;
+    border-right: 2px solid #999999;
+    border-left: 2px solid #999999;
+    box-sizing:border-box; /* IE */
+    -moz-box-sizing:border-box; /* Firefox */
+    -webkit-box-sizing:border-box; /* Safari */
+    width: 200px;
+}
+#header_menu a:link, #header_menu a:visited{
+    display:block;
+    width: 100%;
+    color: #ffffff; 
+    background-color:#b2b2b2;
+    text-align:center;
+    padding:4px;
+    text-decoration:none;
+}
+#header_menu a:hover, #header_menu a:active{
+    color: black;
+    font-weight:bold;
+}
+#mostRight {border-right: none;}        /*id for nav-menu list item farthest right*/
+#mostLeft {border-left: none;}          /*id for nav-menu list item farthest left*/
+#header_menuloc{
+    width: 100%;
+    position: absolute;
+    left: 0px;
+    right: 0px;
+    background-color:#b2b2b2;
+    text-align: center;
+    padding-top:4px;
+    padding-bottom:4px;
+    text-decoration: none;
+    color: #ffffff;
+}
+#content{
+    width: 95%;
+    background-color: #f2f2f2;
+    border-left-style: solid;
+    border-right-style: solid;
+    border-bottom-style: solid;
+    border-left-width: 1px;
+    border-right-width: 1px;
+    border-bottom-width: 1px;
+    border-left-color: #999999;
+    border-right-color: #999999;
+    border-bottom-color: #cccccc;
+    margin-left:auto;
+    margin-right:auto;
+    padding-top: 20px;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-bottom: 40px;
+}
+.content_h1{
+    font-size: 30px;
+    font-family: Verdana,Arial,Helvetica,sans-serif;
+    font-weight: bold;
+    color: #9999ff;
+}
+.content_h2{
+    font-size: 20px;
+    font-family: Verdana,Arial,Helvetica,sans-serif;
+    font-weight: bold;
+    color: #b2b2b2;
+}
+#footer{
+    width: 100%;
+    height: 20px;
+    color: black;
+    text-align: center;
+    font-size: 10px;
+    font-style: italic;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+
+
+.editInfo a{
+    text-decoration: none;
+    color:red;
+}
+.editInfo{
+    font-size: 10px;
+    color:red;
+}
+
+.content_field{
+    font-weight: bold;
+}
+.content_fieldhidden{
+    font-weight: bold;
+    text-decoration: line-through;
+}
+
+select{
+    background-color: #cacaca;
+    border: 2px solid #3f3f3f;
+}
+input{
+    background-color: #cccccc;
+    border: 2px solid #666666;
+}
+
 
 

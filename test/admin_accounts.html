@@ -3,28 +3,32 @@
     <head>
 	<title>Accounts - SiteOfAwesome Administration</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<link rel="stylesheet" type="text/css" href="/siteofawesome/css/theme_main/main.css" />
+	<link rel="stylesheet" type="text/css" href="/siteofawesome/css/theme_main/admin.css" />
     </head>
-    <body>
-	<div id="topHeader">Accounts - SiteOfAwesome Administration</div>
-	<form method="post"><div class="mainContenet">
-	    <div class="settingSection">Basic Account Settings</div>
-	    <p>
-		Allow Users To Signup: <input type="checkbox" name="allowSignup"></input>
-	    </p>
-	    <div class="saveChangesBtn">
-		<input type="submit" name="allowSignup" value="Save Changes" />
+    <body><table id="container">
+	<tr><td id="header" valign="top">
+	    Accounts - SiteOfAwesome Administration
+	</td></tr>
+	<tr><td class="content" valign="top">
+	    <div id="content_leftnav">
+		<ul>
+		    <li><a href="/siteofawesome/test/admin_main.html">Main Page</a></li>
+		    <li id="active">Accounts</li>
+		    <li class="sub"><a href="/siteofawesome/test/admin_addaccnt.html">Add Account</a></li>
+		    <li class="sub"><a href="/siteofawesome/test/admin_listaccnt.html">List Accounts</a></li>
+		    <li><a href="/siteofawesome/test/admin_look.html">Appearance</a></li>
+		</ul>
 	    </div>
-	</div></form>
-	<div class="leftMenu">
-	    <ul>
-		<li><a href="/siteofawesome/test/admin_main.html">Main Page</a></li>
-		<li id="active">Accounts</li>
-		<li class="sub"><a href="#">Add Account</a></li>
-		<li class="sub"><a href="#">List Accounts</a></li>
-		<li><a href="/siteofawesome/test/admin_look.html">Appearance</a></li>
-	    </ul>
-	</div>
-	<div id="btmFooter">&COPY; 2013 Jeffrey Santi</div>
-    </body>
+	    <div id="content_main"><form method="post">
+		<div class="sdivsion">Basic Account Settings</div><br />
+		Allow Users To Signup: <input type="checkbox" name="allowSignup" /><br /><br />
+		<input id="save" type="submit" name="allowSignup" value="Save Changes" />
+	    </form></div>
+		
+	    
+	</td></tr>
+	<tr><td id="footer" valign="bottom">
+	    &COPY; 2013 Jeffrey Santi
+	</td></tr>
+    </table></body>
 </html>

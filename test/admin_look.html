@@ -1,61 +1,66 @@
 <!DOCTYPE html>
 <html>
     <head>
-	<title>Appearance - SiteOfAwesome Administration</title>
-	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<link rel="stylesheet" type="text/css" href="/siteofawesome/css/theme_main/main.css" />
+        <title>Appearance - SiteOfAwesome Administration</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <link rel="stylesheet" type="text/css" href="/siteofawesome/css/theme_main/admin.css" />
     </head>
-    <body>
-	<div id="topHeader">Appearance - SiteOfAwesome Administration</div>
-	<form method="post"><div class="mainContenet">
-	    <div class="settingSection">Theme Information</div>
-		<p>To Install and Use Themes:</p>
-		<ol>
-		    <li>Place the zip file of the theme into the <em>./themes</em> folder.</li>
-		    <li>Verify you wish to install the theme below. The zip file will extract
-			and will be moved to the <em>./themes/installed</em> folder.</li>
-		    <li>Select the theme to use below.</li>
-		</ol>
-	    <div class="settingSection">Theme Installation</div>
-		<p>The following themes have been detected in the <em>./themes</em> folder, and
-		    are ready to be installed with approval.</p>
-		<table width="75%">
-		    <tr><th width="75%">File</th><th width="25%">Action</th></tr>
-		    <tr>
-			<td>theme_crazy.zip</td>
-			<td align="center">
-			    <a href="#"><img src="../img/allow.png" alt="Install" width="25" height="25" border="0" /></a>
-			    &nbsp;&nbsp;&nbsp;
-			    <a href="#"><img src="../img/del.png" alt="Delete" width="25" height="25" border="0" /></a>
-			</td>
-		    </tr>
-		    <tr>
-			<td>theme_test.zip</td>
-			<td align="center">
-			    <a href="#"><img src="../img/allow.png" alt="Install" width="25" height="25" border="0" /></a>
-			    &nbsp;&nbsp;&nbsp;
-			    <a href="#"><img src="../img/del.png" alt="Delete" width="25" height="25" border="0" /></a>
-			</td>
-		    </tr>
-		</table><br />
-	    <div class="settingSection">Theme Selection</div>
-		<p>Select the theme you wish to use: 
-		<select name="theme">
-		    <option value="a">Main Theme</option>
-		    <option value="b">Dark Theme</option>
-		    <option value="c">Education Theme</option>
-		</select></p>
-	    <div class="saveChangesBtn">
-		<input type="submit" name="allowSignup" value="Save Changes" />
-	    </div>
-	</div></form>
-	<div class="leftMenu">
-	    <ul>
-		<li><a href="/siteofawesome/test/admin_main.html">Main Page</a></li>
-		<li><a href="/siteofawesome/test/admin_accounts.html">Accounts</a></li>
-		<li id="active">Appearance</li>
-	    </ul>
-	</div>
-	<div id="btmFooter">&COPY; 2013 Jeffrey Santi</div>
-    </body>
+    <body><table id="container">
+        <tr><td id="header" valign="top">
+            Appearance - SiteOfAwesome Administration
+        </td></tr>
+        <tr><td id="contenet" valign="top">
+            <div id="content_leftnav">
+                <ul>
+                    <li><a href="/siteofawesome/test/admin_main.html">Main Page</a></li>
+                    <li><a href="/siteofawesome/test/admin_accounts.html">Accounts</a></li>
+                    <li id="active">Appearance</li>
+                </ul>
+            </div>
+            <div id="content_main"><form method="post">
+                <div class="sdivsion">Theme Information</div><br />
+                <p>To Install and Use Themes:</p>
+                <ol>
+                    <li>Place the zip file of the theme into the <em>./themes</em> folder.</li>
+                    <li>Verify you wish to install the theme below. The zip file will extract
+                        and will be moved to the <em>./themes/installed</em> folder.</li>
+                    <li>Select the theme to use below.</li>
+                </ol><br />
+                <div class="sdivsion">Theme Installation</div><br />
+                <p>The following themes have been detected in the <em>./themes</em> folder, and
+                    are ready to be installed with approval.</p>
+                <div class="innerBorder"><table width="75%">
+                    <tr><th width="75%">File</th><th width="25%">Action</th></tr>
+                    <tr>
+                        <td>theme_crazy.zip</td>
+                        <td align="center">
+                            <a href="#"><img src="../img/allow.png" alt="Install" width="25" height="25" border="0" /></a>
+                            &nbsp;&nbsp;&nbsp;
+                            <a href="#"><img src="../img/del.png" alt="Delete" width="25" height="25" border="0" /></a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>theme_test.zip</td>
+                        <td align="center">
+                            <a href="#"><img src="../img/allow.png" alt="Install" width="25" height="25" border="0" /></a>
+                            &nbsp;&nbsp;&nbsp;
+                            <a href="#"><img src="../img/del.png" alt="Delete" width="25" height="25" border="0" /></a>
+                        </td>
+                    </tr>
+                </table></div><br />
+                <div class="sdivsion">Theme Selection</div><br />
+                <p>Select the theme you wish to use: 
+                <select name="theme">
+                    <option value="a">Main Theme</option>
+                    <option value="b">Dark Theme</option>
+                    <option value="c">Education Theme</option>
+                </select></p><br />
+                <input id="save" type="submit" name="allowSignup" value="Save Changes" />
+            </form></div>
+            
+        </td></tr>
+        <tr><td id="footer" valign="bottom">
+            &COPY; 2013 Jeffrey Santi
+        </td></tr>
+    </table></body>
 </html>
