@@ -188,7 +188,7 @@ select{
     background-color: #cacaca;
     border: 2px solid #3f3f3f;
 }
-input{
+input, textarea{
     background-color: #cccccc;
     border: 2px solid #666666;
 }

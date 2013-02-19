@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Information/Contact Editor - Site Of Awesome</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <link rel="stylesheet" type="text/css" href="/siteofawesome/css/theme_main/main.css" />
+    </head>
+    <body>
+        <table id="container">
+        <tr><td id="tbl_top" valign="top">
+            <div id="header">
+                <span id="header_h1">SiteOfAwesome</span><br/>	
+                <span id="header_h2">Editor</span><br /><br />
+                <br />
+                <div id="header_menuloc">
+                    SiteOfAwesome &nbsp;&nbsp;&nbsp;&ShortRightArrow;&nbsp;&nbsp;&nbsp;
+                    Basic Information & Contact Details
+                </div>
+            </div>
+            <div id="content"><form method="post">
+                
+                <span class="content_h1">About You & Contact Configuration</span><br/><br />
+
+                <span class="content_h2">About You</span><br/><br />
+                <div class="innerBorder"><table>
+                    <tr>
+                        <th>Field</th>
+                        <th>Information</th>
+                        <th>Public</th>
+                        <th>Remove</th>
+                    </tr>
+                    <tr>
+                        <td>Gender</td>
+                        <td>Male</td>
+                        <td align="center"><input type="checkbox" value="1" name="pb" /></td>
+                        <td align="center"><input type="checkbox" value="1" name="rmf" /></td>
+                    </tr>
+                    <tr>
+                        <td>Name</td>
+                        <td>John Smith</td>
+                        <td align="center"><input type="checkbox" value="1" name="pb" /></td>
+                        <td align="center"><input type="checkbox" value="1" name="rmf" /></td>
+                    </tr>
+                    <tr>
+                        <td>Birthday</td>
+                        <td>May 18, 1991</td>
+                        <td align="center"><input type="checkbox" value="1" name="pb" /></td>
+                        <td align="center"><input type="checkbox" value="1" name="rmf" /></td>
+                    </tr>
+                    <tr>
+                        <td>Hobbies</td>
+                        <td>I enjoy
+                                Programming
+                                Gaming
+                                Hiking
+                                Eating</td>
+                        <td align="center"><input type="checkbox" value="1" name="pb" /></td>
+                        <td align="center"><input type="checkbox" value="1" name="rmf" /></td>
+                    </tr>
+                </table></div><br />
+                <table>
+                    <tr>
+                        <td><div class="content_field">Field Name: </div></td>
+                        <td><input type="text" name="feild" /></td>
+                    </tr>
+                    <tr>
+                        <td><div class="content_field">Information: </div></td>
+                        <td><textarea name="info"></textarea></td>
+                    </tr>
+                    <tr>
+                        <td><div class="content_field">Public: </div></td>
+                        <td><input type="checkbox" name="public" /></td>
+                    </tr>
+                </table><br />
+
+                <span class="content_h2">Contact Information</span><br/><br />
+                <div class="innerBorder"><table>
+                    <tr>
+                        <th>Type</th>
+                        <th>Name</th>
+                        <th>Information</th>
+                        <th>Public</th>
+                        <th>Remove</th>
+                    </tr>
+                    <tr>
+                        <td>Phone</td>
+                        <td>Home</td>
+                        <td>860-555-1256</td>
+                        <td align="center"><input type="checkbox" value="1" name="pb" /></td>
+                        <td align="center"><input type="checkbox" value="1" name="rmf" /></td>
+                    </tr>
+                    <tr>
+                        <td>Phone</td>
+                        <td>Work</td>
+                        <td>860-555-8914</td>
+                        <td align="center"><input type="checkbox" value="1" name="pb" /></td>
+                        <td align="center"><input type="checkbox" value="1" name="rmf" /></td>
+                    </tr>
+                    <tr>
+                        <td>Mail</td>
+                        <td>Home</td>
+                        <td>30 Main Street<br />
+                                New York, NY 54653</td>
+                        <td align="center"><input type="checkbox" value="1" name="pb" /></td>
+                        <td align="center"><input type="checkbox" value="1" name="rmf" /></td>
+                    </tr>
+                    <tr>
+                        <td>Mail</td>
+                        <td>Work</td>
+                        <td>McDonald's<br />
+                            12 5th Avenue<br />
+                            New York, NY 54653
+                            </td>
+                        <td align="center"><input type="checkbox" value="1" name="pb" /></td>
+                        <td align="center"><input type="checkbox" value="1" name="rmf" /></td>
+                    </tr>
+                    <tr>
+                        <td>Online</td>
+                        <td>Email</td>
+                        <td><a href="mailto:name@isp.com">name@isp.com</a></td>
+                        <td align="center"><input type="checkbox" value="1" name="pb" /></td>
+                        <td align="center"><input type="checkbox" value="1" name="rmf" /></td>
+                    </tr>
+                    <tr>
+                        <td>Online</td>
+                        <td>Website</td>
+                        <td><a href="http://example.com">http://example.com</a></td>
+                        <td align="center"><input type="checkbox" value="1" name="pb" /></td>
+                        <td align="center"><input type="checkbox" value="1" name="rmf" /></td>
+                    </tr>
+                </table></div><br />
+                <table>
+                    <tr>
+                        <td><div class="content_field">Contact Section: </div></td>
+                        <td><select name="ctype">
+                                <option value="1">Phone</option>
+                                <option value="1">Fax</option>
+                                <option value="1">Address</option>
+                                <option value="1">Email</option>
+                                <option value="1">Website</option>
+                                <option value="1">Online</option>
+                        </select></td>
+                    </tr>
+                    <tr>
+                        <td><div class="content_field">Field Name: </div></td>
+                        <td><input type="text" name="cfeild" /></td>
+                    </tr>
+                    <tr>
+                        <td><div class="content_field">Information: </div></td>
+                        <td><textarea name="cinfo"></textarea></td>
+                    </tr>
+                    <tr>
+                        <td><div class="content_field">Public: </div></td>
+                        <td><input type="checkbox" name="cpublic" /></td>
+                    </tr>
+                </table><br />
+
+                <span class="content_h2">Image</span><br/><br />
+                <table><tr>
+                    <td valign="top">
+                    <table>
+                        <tr>
+                            <td><div class="content_field">Don't Use Image: </div></td>
+                            <td><input type="checkbox" name="noimg" /></td>
+                        </tr>
+                        <tr>
+                            <td><div class="content_field">Image Name: </div></td>
+                            <td><input type="text" name="img" value="bg.png" /></td>
+                        </tr>
+                    </table>
+                    </td>
+                    <td valign="top">
+                        <img src="/siteofawesome/img/theme_main/bg.png" alt="Your Picture" width="200" />
+                    </td>
+                </table><br />
+                
+                <span class="content_h2">Done:</span><br/>
+                <div id="content_submit"><input type="submit" name="submit" value="Update" /></div>
+                <div class="content_linkbtn"><a href="/siteofawesome/test/client_main.html">Cancel</a></div>
+            </form></div>
+        </td></tr>
+        <tr><td id="tbl_bottom" valign="bottom">
+            <div id="footer">
+                SiteOfAwesome &COPY; 2013 Jeffrey Santi
+            </div>
+        </td></tr>
+        </table>
+    </body>
+</html>

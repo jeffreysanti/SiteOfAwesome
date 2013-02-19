@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-	<title>Edit Information - Site Of Awesome</title>
+	<title>Appearance Editor - Site Of Awesome</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<link rel="stylesheet" type="text/css" href="/siteofawesome/css/theme_main/main.css" />
     </head>
@@ -14,18 +14,30 @@
                 <br />
                 <div id="header_menuloc">
                     SiteOfAwesome &nbsp;&nbsp;&nbsp;&ShortRightArrow;&nbsp;&nbsp;&nbsp;
-                    Header &nbsp;&nbsp;&nbsp;&ShortRightArrow;&nbsp;&nbsp;&nbsp;
-                    Website Title
+                    Appearance
                 </div>
             </div>
             <div id="content"><form method="post">
-                <span class="content_h2">Configuration:</span><br/><br />
+                <span class="content_h1">Appearance Configuration:</span><br/><br />
+                <span class="content_h2">Heading: </span><br/><br />
                 <table>
-                <tr>
-                    <td><div class="content_field">Website Title: John Smith &ShortRightArrow; </div></td>
-                    <td><input type="text" name="in1" value="John Smith" /></td>
-                </tr>
+                    <tr>
+                        <td><div class="content_field">Main Title: John Smith &ShortRightArrow; </div></td>
+                        <td><input type="text" name="in1" value="John Smith" /></td>
+                    </tr>
+                    <tr>
+                        <td><div class="content_field">Subtitle: Web Designer, Software Engineer &ShortRightArrow; </div></td>
+                        <td><input type="text" name="in2" value="Web Designer, Software Engineer" /></td>
+                    </tr>
                 </table><br />
+                <span class="content_h2">Theme: </span><br/><br />
+                <select name="theme">
+                    <option value="default" selected="true">-- Default Theme --</option>
+                    <option value="a">Main Theme</option>
+                    <option value="b">Dark Theme</option>
+                    <option value="c">Education Theme</option>
+                </select><br /><br />
+                
                 <span class="content_h2">Done:</span><br/>
                 <div id="content_submit"><input type="submit" name="submit" value="Update" /></div>
                 <div class="content_linkbtn"><a href="/siteofawesome/test/client_main.html">Cancel</a></div>
