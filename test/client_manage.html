@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Edit Clients - Site Of Awesome</title>
+        <title>Editor - Site Of Awesome</title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" type="text/css" href="/siteofawesome/css/theme_main/main.css" />
     </head>
@@ -13,108 +13,25 @@
                 <span id="header_h2">Editor</span><br /><br />
                 <br />
                 <div id="header_menuloc">
-                    SiteOfAwesome &nbsp;&nbsp;&nbsp;&ShortRightArrow;&nbsp;&nbsp;&nbsp;
-                    Clients/Groups
+                    SiteOfAwesome Editor
                 </div>
             </div>
             <div id="content"><form method="post">
-                <div id="content_rightside">
-                    <span class="content_h1">About</span><br/><br />
-                    <span class="content_h2">Public Viewing</span><br/><br />
-                    <p>By default your profile will be only visible to anyone you create an account for. You can
-                        enable public viewing here. When you do so, the public will only access the home page with
-                        no content visible to them. For your privacy only information explictly given permission for
-                        the group &QUOT;public&QUOT; will be visible to them.</p><br />
-
-                    <span class="content_h2">Groups</span><br/><br />
-                    <p>Groups are SiteOfAwesomes's way of organizing what content is visible to specific
-                        clients. While, you certainly are able to control what an individual client can
-                        or cannot see, groups make it much easier to manage categories of clients. Note that
-                        a particular client's access overrides the group access.</p>
-                </div>
-                <div id="content_leftside">
-                    <span class="content_h1">Configuration</span><br/><br />
-                    <span class="content_h2">General</span><br/><br />
-                    <table>
+                <span class="content_h1">Configuration Directory</span><br/><br />
+                <table class="tileRegion" align="center">
                     <tr>
-                        <td><div class="content_field">Public Profile: </div></td>
-                        <td><input type="checkbox" name="publicprof" /></td>
+                        <td><a class="tile" href="client_cg.html"><span class="tilea">Client/Group Manager</span></a></td>
+                        <td ><a class="tile" href="client_editi.html"><span class="tilea">Appearance Configuration</span></a></td>
                     </tr>
-                    </table><br />
-
-                    <span class="content_h2">Group List</span><br/><br />
-                    <div class="innerBorder"><table>
-                        <tr>
-                            <th>Group</th>
-                            <th>Remove</th>
-                        </tr>
-                        <tr>
-                            <td><a href="/siteofawesome/test/client_gdet.html">Schools</a></td>
-                            <td align="center"><input type="checkbox" value="1" name="rmg" /></td>
-                        </tr>
-                        <tr>
-                            <td><a href="#">Show-Art</a></td>
-                            <td align="center"><input type="checkbox" value="2" name="rmg" /></td>
-                        </tr>
-                        <tr>
-                            <td><a href="#">Job Interviewers</a></td>
-                            <td align="center"><input type="checkbox" value="3" name="rmg" /></td>
-                        </tr>
-                    </table></div><br />
-                    <table>
-                        <tr>
-                            <td><div class="content_field">Group Name: </div></td>
-                            <td><input type="text" name="groupname" /></td>
-                        </tr>
-                    </table><br />
-
-                    <span class="content_h2">Client List</span><br/><br />
-                    <div class="innerBorder"><table>
-                        <tr>
-                            <th>Client</th>
-                            <th>Group(s)</th>
-                            <th>Remove</th>
-                        </tr>
-                        <tr>
-                            <td><a href="/siteofawesome/test/client_cdet.html">Harvard</a></td>
-                            <td>Schools, Show-Art</td>
-                            <td align="center"><input type="checkbox" value="1" name="rmc" /></td>
-                        </tr>
-                        <tr>
-                            <td><a href="#">MIT</a></td>
-                            <td>Schools</td>
-                            <td align="center"><input type="checkbox" value="2" name="rmc" /></td>
-                        </tr>
-                        <tr>
-                            <td><a href="#">Google</a></td>
-                            <td>Job Interviewers, Show-Art</td>
-                            <td align="center"><input type="checkbox" value="3" name="rmc" /></td>
-                        </tr>
-                        <tr>
-                            <td><a href="#">Burger King</a></td>
-                            <td>Job Interviewers</td>
-                            <td align="center"><input type="checkbox" value="4" name="rmc" /></td>
-                        </tr>
-                    </table></div><br />
-                    <table>
-                        <tr>
-                            <td><div class="content_field">Client Name: </div></td>
-                            <td><input type="text" name="clientname" /></td>
-                        </tr>
-                        <tr>
-                            <td><div class="content_field">Login: </div></td>
-                            <td><input type="text" name="clientlogin" /></td>
-                        </tr>
-                        <tr>
-                            <td><div class="content_field">Password: </div></td>
-                            <td><input type="text" name="clientpass" /></td>
-                        </tr>
-                    </table><br />
-
-                    <span class="content_h2">Done:</span><br/>
-                    <div id="content_submit"><input type="submit" name="submit" value="Update" /></div>
-                    <div class="content_linkbtn"><a href="/siteofawesome/test/client_main.html">Cancel</a></div>
-                </div>
+                    <tr>
+                        <td><a class="tile" href="/siteofawesome/kcfinder/browse.php"><span class="tilea">File Browser</span></a></td>
+                        <td><a class="tile" href="client_editinfo.html"><span class="tilea">About You / Contact Info</span></a></td>
+                    </tr>
+                    <tr>
+                        <td><a class="tile" href="client_main.html"><span class="tilea">Home</span></a></td>
+                        <td><a class="tile" href="loginpage.html"><span class="tilea">Logout</span></a></td>
+                    </tr>
+                </table><br /><br />
             </form></div>
         </td></tr>
         <tr><td id="tbl_bottom" valign="bottom">

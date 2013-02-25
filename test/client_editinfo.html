@@ -4,6 +4,7 @@
         <title>Information/Contact Editor - Site Of Awesome</title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" type="text/css" href="/siteofawesome/css/theme_main/main.css" />
+        <script src="/siteofawesome/ckeditor/ckeditor.js"></script>
     </head>
     <body>
         <table id="container">
@@ -65,7 +66,7 @@
                     </tr>
                     <tr>
                         <td><div class="content_field">Information: </div></td>
-                        <td><textarea name="info"></textarea></td>
+                        <td><textarea name="editor1"></textarea></td>
                     </tr>
                     <tr>
                         <td><div class="content_field">Public: </div></td>
@@ -147,7 +148,7 @@
                     </tr>
                     <tr>
                         <td><div class="content_field">Information: </div></td>
-                        <td><textarea name="cinfo"></textarea></td>
+                        <td><textarea name="editor2"></textarea></td>
                     </tr>
                     <tr>
                         <td><div class="content_field">Public: </div></td>
@@ -186,4 +187,9 @@
         </td></tr>
         </table>
     </body>
+    
+    <script>
+        CKEDITOR.replace( 'editor1' );
+        CKEDITOR.replace( 'editor2' );
+    </script>
 </html>

@@ -30,7 +30,7 @@ function checkForDataRedirect(array $params, $noCare=false) // checks if a page 
     if(count($params) < 2)
 	return;
     $params = array_values($params); // reindex
-    $types = array("css", "test", "img");
+    $types = array("css", "test", "img", "ckeditor");
     foreach ($params as $key => $value) {
 	if(in_array($value, $types))
 	{

@@ -1,2 +1,8 @@
 RewriteEngine on
-RewriteRule .* page.php
+
+RewriteRule ^kcfinder/.*$ - [PT]
+RewriteRule ^ckeditor/.*$ - [PT]
+
+RewriteRule .* page.php [L]
+
+

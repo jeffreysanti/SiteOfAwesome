@@ -9,9 +9,8 @@
         <table id="container">
         <tr><td id="tbl_top" valign="top">
             <div id="header">
-                <span id="header_h1">John Smith</span>
-                <span class="editInfo"><a href="/siteofawesome/test/client_editi.html">[E]</a></span><br/>	
-                <span id="header_h2">Web Designer, Software Engineer</span><span class="editInfo">[E]</span><br /><br />
+                <span id="header_h1">John Smith</span><br/>	
+                <span id="header_h2">Web Designer, Software Engineer</span><br /><br />
                 <br />
                 <div id="header_menu"><ul>
                     <li id="mostLeft" style="width:25%;"><a href="/siteofawesome/test/client_main.html">Home</a></li>
@@ -21,16 +20,21 @@
                 </ul></div>
             </div>
             <div id="content">
-                Consulted perpetual of pronounce me delivered. Too months nay end change relied who beauty wishes matter. Shew of john real park so rest we on. Ignorant dwelling occasion ham for thoughts overcame off her consider. Polite it elinor is depend. His not get talked effect worthy barton. Household shameless incommode at no objection behaviour. Especially do at he possession insensible sympathize boisterous it. Songs he on an widen me event truth. Certain law age brother sending amongst why covered. 
-
-Mind what no by kept. Celebrated no he decisively thoroughly. Our asked sex point her she seems. New plenty she horses parish design you. Stuff sight equal of my woody. Him children bringing goodness suitable she entirely put far daughter. 
-
-It sportsman earnestly ye preserved an on. Moment led family sooner cannot her window pulled any. Or raillery if improved landlord to speaking hastened differed he. Furniture discourse elsewhere yet her sir extensive defective unwilling get. Why resolution one motionless you him thoroughly. Noise is round to in it quick timed doors. Written address greatly get attacks inhabit pursuit our but. Lasted hunted enough an up seeing in lively letter. Had judgment out opinions property the supplied. 
-
-To sure calm much most long me mean. Able rent long in do we. Uncommonly no it announcing melancholy an in. Mirth learn it he given. Secure shy favour length all twenty denote. He felicity no an at packages answered opinions juvenile. 
-
-Resolution possession discovered surrounded advantages has but few add. Yet walls times spoil put. Be it reserved contempt rendered smallest. Studied to passage it mention calling believe an. Get ten horrible remember pleasure two vicinity. Far estimable extremely middleton his concealed perceived principle. Any nay pleasure entrance prepared her. 
-                <br />
+                <div id="content_sidebar">
+                    <div class="content_sideh1">Filtered</div><br />
+                    <a href="#" class="content_sidebarop">PHP</a>
+                    
+                    <br />
+                    <div class="content_sideh1">Tags</div><br />
+                    <a href="#" class="content_sidebaropxl">C++</a>
+                    <a href="#" class="content_sidebaropm">Delphi</a>
+                    <a href="#" class="content_sidebarops">Sports</a>
+                    <a href="#" class="content_sidebaropxs">VB</a>
+                    <a href="#" class="content_sidebaropl">Web Development</a>
+                </div>
+                <div id="content_main">
+                    <br />
+                </div>
             </div>
         </td></tr>
         <tr><td id="tbl_bottom" valign="bottom">
@@ -39,5 +43,10 @@ Resolution possession discovered surrounded advantages has but few add. Yet wall
             </div>
         </td></tr>
         </table>
+        <script>
+            document.getElementById('content').setAttribute("style", 
+                        "min-height: "+
+                        (document.getElementById('content_sidebar').scrollHeight+40)+"px;");
+        </script>
     </body>
 </html>
