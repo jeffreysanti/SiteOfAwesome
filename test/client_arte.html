@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>SiteOfAwesome - Article Editor - Site Of Awesome</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <link rel="stylesheet" type="text/css" href="/siteofawesome/css/theme_main/main.css" />
+        <script src="/siteofawesome/ckeditor/ckeditor.js"></script>
+    </head>
+    <body>
+        <table id="container">
+        <tr><td id="tbl_top" valign="top">
+            <div id="header">
+                <span id="header_h1">SiteOfAwesome</span><br/>	
+                <span id="header_h2">Editor</span><br /><br />
+                <br />
+                <div id="header_menuloc">
+                    SiteOfAwesome &nbsp;&nbsp;&nbsp;&ShortRightArrow;&nbsp;&nbsp;&nbsp;
+                    Article Editor &nbsp;&nbsp;&nbsp;&ShortRightArrow;&nbsp;&nbsp;&nbsp;
+                    SiteOfAwesome
+                </div>
+            </div>
+            <div id="content"><form method="post">
+                <span class="content_h1">SiteOfAwesome Article</span><br/><br />
+                <span class="content_h2">General</span><br/><br />
+                <table>
+                    <tr>
+                        <td><div class="content_field">Article Name: SiteOfAwesome &ShortRightArrow; </div></td>
+                        <td><input type="text" name="artname" value="SiteOfAwesome" /></td>
+                    </tr>
+                    <tr>
+                        <td><div class="content_field">Time: Early 2013 &ShortRightArrow; </div></td>
+                        <td><input type="text" name="arttime" value="Early 2013" /></td>
+                    </tr>
+                    <tr>
+                        <td><div class="content_field">Tags (Separate by comma):</div></td>
+                        <td><textarea name="tags" rows="8" cols="50">
+PHP, Web Development, Awesome Stuff, YES</textarea></td>
+                    </tr>
+                </table><br />
+                
+                <span class="content_h2">Full Text</span><br/><br />
+                <textarea name="editor1"></textarea><br />
+                
+                <span class="content_h2">Permissions</span><br/><br />
+                <div class="innerBorder"><table>
+                    <tr>
+                        <th>Group</th>
+                        <th>Access</th>
+                    </tr>
+                    <tr>
+                        <td><a href="/siteofawesome/test/client_gdet.html">Schools</a></td>
+                        <td align="center"><input type="checkbox" value="1" name="gm" /></td>
+                    </tr>
+                    <tr>
+                        <td><a href="#">Show-Art</a></td>
+                        <td align="center"><input type="checkbox" value="2" name="gm" checked /></td>
+                    </tr>
+                    <tr>
+                        <td><a href="#">Job Interviewers</a></td>
+                        <td align="center"><input type="checkbox" value="3" name="gm" /></td>
+                    </tr>
+                </table></div><br />
+
+                <div class="innerBorder"><table>
+                    <tr>
+                        <th>Client</th>
+                        <th>Groups</th>
+                        <th>Block</th>
+                        <th>Allow</th>
+                    </tr>
+                    <tr>
+                        <th><a href="#">Inherited [Visible]</a></th>
+                        <th>Explicitly Allowed for Group; Implicitly Allowed for Client</th>
+                        <th align="center"><input type="checkbox" disabled="disabled" /></th>
+                        <th align="center"><input type="checkbox" disabled="disabled" /></th>
+                    </tr>
+                    <tr class="na">
+                        <th><a href="#">Inherited [Invisible]</a></th>
+                        <th>Implicitly Not Visible</th>
+                        <th align="center"><input type="checkbox" disabled="disabled" /></th>
+                        <th align="center"><input type="checkbox" disabled="disabled" /></th>
+                    </tr>
+                    <tr class="added">
+                        <th><a href="#">Added</a></th>
+                        <th>Explicitly Allowed for Client</th>
+                        <th align="center"><input type="checkbox" disabled="disabled" /></th>
+                        <th align="center"><input type="checkbox" disabled="disabled" checked /></th>
+                    </tr>
+                    <tr class="blocked">
+                        <th><a href="#">Blocked</a></th>
+                        <th>Explicitly Blocked for Client</th>
+                        <th align="center"><input type="checkbox" disabled="disabled" checked /></th>
+                        <th align="center"><input type="checkbox" disabled="disabled" /></th>
+                    </tr>
+                    <tr class="divide"><td></td><td></td><td></td><td></td></tr>
+                    <tr>
+                        <td><a href="/siteofawesome/test/client_cdet.html">Harvard</a></td>
+                        <td>Schools, Show-Art</td>
+                        <td align="center"><input type="checkbox" value="1" name="allow" /></td>
+                        <td align="center"><input type="checkbox" value="1" name="blk" disabled="disabled" /></td>
+                    </tr>
+                    <tr class="added">
+                        <td><a href="/siteofawesome/test/client_cdet.html">MIT</a></td>
+                        <td>Schools</td>
+                        <td align="center"><input type="checkbox" value="1" name="blk" disabled="disabled" /></td>
+                        <td align="center"><input type="checkbox" value="1" name="allow" checked /></td>
+                    </tr>
+                    <tr class="blocked">
+                        <td><a href="/siteofawesome/test/client_cdet.html">Google</a></td>
+                        <td>Job Interviewers, Show-Art</td>
+                        <td align="center"><input type="checkbox" value="1" name="blk" checked  /></td>
+                        <td align="center"><input type="checkbox" value="1" name="allow" disabled="disabled" /></td>
+                    </tr>
+                    <tr class="na">
+                        <td><a href="/siteofawesome/test/client_cdet.html">Burger King</a></td>
+                        <td>Job Interviewers</td>
+                        <td align="center"><input type="checkbox" value="1" name="allow" /></td>
+                        <td align="center"><input type="checkbox" value="1" name="blk" disabled="disabled" /></td>
+                    </tr>
+                </table></div><br />
+
+                <span class="content_h2">Done:</span><br/>
+                <div id="content_submit"><input type="submit" name="submit" value="Update" /></div>
+                <div class="content_linkbtn"><a href="/siteofawesome/test/client_main.html">Cancel</a></div>
+            </form></div>
+        </td></tr>
+        <tr><td id="tbl_bottom" valign="bottom">
+            <div id="footer">
+                SiteOfAwesome &COPY; 2013 Jeffrey Santi
+            </div>
+        </td></tr>
+        </table>
+    </body>
+    <script>
+        CKEDITOR.replace( 'editor1' );
+    </script>
+</html>

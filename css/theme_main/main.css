@@ -375,6 +375,9 @@ input, textarea{
 .added tr, .added td, .added th{
     background-color: #86ffad;
 }
+.na{
+    text-decoration: line-through;
+}
 .divide tr, .divide td, .divide th{
     background-color: #b2b2b2;
     height: 5px;
