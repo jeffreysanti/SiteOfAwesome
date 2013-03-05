@@ -9,7 +9,7 @@ require_once("global.php");
 $params = array();
 if(defined("SOA_REWRITE"))
 {
-    $uri = str_replace(SOA_ROOT, "", strtolower($_SERVER['REQUEST_URI']));
+    $uri = str_replace(strtolower(SOA_ROOT), "", strtolower($_SERVER['REQUEST_URI']));
     $params = explode("/", $uri);
 }
 else

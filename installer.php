@@ -32,7 +32,8 @@ if(isset($_POST['submit'])) // manage form submission
     $apass = strip_tags($_POST['apass']);
     
     // test installation directory
-    $path = "http://".$_SERVER['SERVER_ADDR'].$instdir.'/test/dirtest.txt';
+    $path = "http://".gethostbyaddr($_SERVER['SERVER_ADDR']).$instdir.'/test/dirtest.txt';
+    echo $path;
     $fp = @fopen($path, "r"); // supress warnings
     if($fp)
     {
