@@ -94,6 +94,7 @@ if(isset($_POST['submit'])) // manage form submission
 		fwrite($fl, "// Auto-Generated Configuration: ".date("D, d M Y H:i:s").NL);
 		fwrite($fl, "// See config_sample.php for more info.".NL.NL.NL);
 		
+                fwrite($fl, 'define("DB_PRE", "'.$dbprefix.'");'.NL);
 		fwrite($fl, 'define("DB_HOST", "'.$dbhost.'");'.NL);
 		fwrite($fl, 'define("DB_NAME", "'.$dbname.'");'.NL);
 		fwrite($fl, 'define("DB_USER", "'.$dbuser.'");'.NL);

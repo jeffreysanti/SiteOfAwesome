@@ -1,0 +1,9 @@
+Wed, 06 Mar 2013 21:09:10 :: CSS NOT FOUND: css/login.css
+Wed, 06 Mar 2013 21:29:37 :: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'soa.DB_PRE_users' doesn't exist
+Wed, 06 Mar 2013 21:31:35 :: Missing Config
+Wed, 06 Mar 2013 21:31:40 :: Missing Config
+Wed, 06 Mar 2013 21:31:43 :: Missing Config
+Wed, 06 Mar 2013 21:31:45 :: Missing Config
+Wed, 06 Mar 2013 21:31:45 :: Missing Config
+Wed, 06 Mar 2013 21:31:45 :: Missing Config
+Wed, 06 Mar 2013 21:31:57 :: Missing Config

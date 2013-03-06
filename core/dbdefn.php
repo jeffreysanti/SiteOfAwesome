@@ -14,7 +14,7 @@ CREATE TABLE IF NOT EXISTS `soa_users` (
 function CreateDBTablesMySql(PDO $dbConnection, $prefix)
 {
     try{
-	$r = $dbConnection->exec(					    // USERS
+	$dbConnection->exec(					    // USERS
 	    "CREATE TABLE IF NOT EXISTS `".$prefix."_users` (
 	    `id` int(11) NOT NULL AUTO_INCREMENT,
 	    `username` varchar(20) NOT NULL,
@@ -22,6 +22,15 @@ function CreateDBTablesMySql(PDO $dbConnection, $prefix)
 	    `type` smallint(6) NOT NULL,
 	    PRIMARY KEY (`id`)
 	    )	ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1");
+        
+        $dbConnection->exec(					    // USERS
+	    "CREATE TABLE IF NOT EXISTS `soa_siteparam` (
+                `paramname` varchar(10) NOT NULL,
+                `keyval` int(11) NOT NULL,
+                `val` varchar(32) NOT NULL
+                 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;");
+        
+        
     }catch(PDOException $e){
 	return $e->getMessage();
     }

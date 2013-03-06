@@ -27,6 +27,15 @@ foreach ($params as $k => $v) {
 }
 checkForDataRedirect($params); // fullfill any data requests
 
+// begin page stuff :)
+
+session_start();
+if(!isset($_SESSION['soa_uid']))
+{
+    require("login.php");
+    die();
+}
+
 echo "bye";
 //soa_error("Random Error");
 var_dump($params);

@@ -47,4 +47,8 @@ body{
     height: 20px;
     position: absolute;
 }
+.error{
+    color: red;
+    font-size: 14px;
+}
 

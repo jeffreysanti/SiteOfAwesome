@@ -86,6 +86,9 @@ function soa_error($msg, $DoShow=true, $DoDie=true, $DoLog=true)
 	echo "An Error Has Occured: " . $msg;
 }
 
+global $dbc;
+$siteparams = array();
+
 // LOADING OF CONFIG
 if(file_exists("config.php"))
 {
@@ -95,6 +98,26 @@ if(file_exists("config.php"))
     // include db connection
     require_once("core/dbdefn.php");
     $dbc = EstablishDataBaseConnection();
+    
+    //load global site data
+    $r = $dbc->query("SELECT * FROM `".DB_PRE."_siteparam` WHERE keyval = '-1'");
+    if($r != FALSE)
+    {
+        $siteparams = $r->fetchAll();
+    }
+    
+    //load site info from db
+    // is theme modifiable
+    @define("SOA_THEMECHOICE", 0);
+    foreach ($siteparams as $value) {
+        if($value['paramname'] == "tchoice" && $value["keyval"] == -1 && $value["val"] == 1)
+        {
+            @define("SOA_THEMECHOICE", 1); // the admin allows subthemes
+        }
+    }
+    define("SOA_THEME", "theme_main"); // default if else fails :(
+    var_dump($siteparams);
+    LoadSiteSettings(-1, $siteparams);
 }
 else
 {
@@ -105,6 +128,44 @@ else
     soa_error("Missing Config", false);
 }
 
+function params(array $a) // constructs paramters on url
+{
+    $s = "";
+    if(!defined("SOA_REWRITE"))
+        $s = "?";
+    $i = 0;
+    foreach ($a as $value) {
+        if(defined("SOA_REWRITE"))
+            $s = $s . "/" . $value;
+        else{
+            $s = $s . "p" . $i . "=" . $value . "&";
+        }
+        $i++;
+    }
+}
+
+function LoadSiteSettings($num, $a=FALSE)
+{
+    if($num != -1 && SOA_THEMECHOICE == 0)
+        return; // nothing can be changed
+    
+    if($a == FALSE)
+    {
+        $r = $dbc->query("SELECT * FROM `".DB_PRE."_siteparam` WHERE keyval = '".$num."'");
+        if($r != FALSE)
+        {
+            $a = $r->fetchAll();
+        }
+    }
+    foreach ($a as $value) {
+        if($value["keyval"] == $num)
+        {
+            if($value['keyval'] == 'theme' && ($num == -1 || SOA_THEMECHOICE == 1))  // theme setting
+                @define("SOA_THEME", $value['val']);
+        }
+    }
+    
+}
 
 
 ?>

@@ -1,9 +1,10 @@
 <?php
 
-// Auto-Generated Configuration: Tue, 05 Mar 2013 21:04:51
+// Auto-Generated Configuration: Wed, 06 Mar 2013 21:31:57
 // See config_sample.php for more info.
 
 
+define("DB_PRE", "soa");
 define("DB_HOST", "127.0.0.1");
 define("DB_NAME", "soa");
 define("DB_USER", "root");
