@@ -33,7 +33,7 @@ echo
 '    <head>'.NL.
 '	<title>SiteOfAwesome Login</title>'.NL.
 '	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">'.NL.
-'	<link rel="stylesheet" type="text/css" href="'.SOA_ROOT.'/css/'.SOA_THEMEGLOB.'/login.css" />'.NL.
+'	<link rel="stylesheet" type="text/css" href="'.SOA_ROOT.'/css/'.SOA_THEME.'/login.css" />'.NL.
 '   </head>'.NL.
 '   <body>'.NL.
 '	<div id="login_page"><form method="post" action="'.SOA_ROOT.'/login.php">'.NL;

@@ -30,15 +30,37 @@ checkForDataRedirect($params); // fullfill any data requests
 // begin page stuff :)
 
 session_start();
-if(!isset($_SESSION['soa_uid']))
+if(!isset($_SESSION['soa_uid'])) // they're not logged-in yet
 {
     require("login.php");
     die();
 }
 
-echo "bye";
-//soa_error("Random Error");
-var_dump($params);
+// check for core functions
+if(count($params) > 0 && $params[1] == "logout.php") // logout instruction
+{
+    require("logout.php");
+}
+
+global $dbc;
+
+// now find out who they are :)
+$r = $dbc->query("SELECT * FROM ".DB_PRE."_users WHERE id = '".$_SESSION['soa_uid']."'")->fetchAll();
+if(count($r) < 1) // they are not really logged in ???
+    require("logout.php");
+$userrow = $r[0]; // isolate 1st row (hopefully there were not multiple matches)
+
+// sort by type
+switch($userrow['type']){
+    case 0:{            // Administrator
+        require("admin/page.php");
+        break;
+    }
+    default:{
+        soa_error("User with unknown type: ".$userrow['type'].', id: '.$userrow['id']);
+    }
+}
+
 
 ob_end_flush();
 ?>

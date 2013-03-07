@@ -116,7 +116,6 @@ if(file_exists("config.php"))
         }
     }
     define("SOA_THEME", "theme_main"); // default if else fails :(
-    var_dump($siteparams);
     LoadSiteSettings(-1, $siteparams);
 }
 else
@@ -142,6 +141,7 @@ function params(array $a) // constructs paramters on url
         }
         $i++;
     }
+    return $s;
 }
 
 function LoadSiteSettings($num, $a=FALSE)
@@ -165,6 +165,41 @@ function LoadSiteSettings($num, $a=FALSE)
         }
     }
     
+}
+
+function writeheader($title = "SiteOfAwesome", $cssdoc="main.css"){
+    echo 
+'<!DOCTYPE html>'.NL.
+'<html>'.NL.
+'   <head>'.NL.
+'       <title>'.$title.'</title>'.NL.
+'       <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">'.NL.
+'       <link rel="stylesheet" type="text/css" href="/SiteOfAwesome/css/'.SOA_THEME.'/'.$cssdoc.'" />'.NL.
+'   </head>'.NL.
+'   <body>'.NL.
+'   <table id="container">'.NL.
+'   <tr><td id="tbl_top" valign="top">'.NL;
+}
+
+
+function writefooter($script=""){
+        echo 
+'   </td></tr>'.NL.
+'   <tr><td id="tbl_bottom" valign="bottom">'.NL.
+'       <div id="footer">'.NL.
+'           SiteOfAwesome &COPY; 2013 Jeffrey Santi'.NL.
+'       </div>'.NL.
+'   </td></tr>'.NL.
+'   </table>'.NL.
+'   </body>'.NL;
+        if($script != "")
+        {
+            echo
+'   <script>'.NL.$script.NL.
+'   </script>';
+        }
+        echo
+'</html>'.NL;
 }
 
 
