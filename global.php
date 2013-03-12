@@ -146,6 +146,7 @@ function params(array $a) // constructs paramters on url
 
 function LoadSiteSettings($num, $a=FALSE)
 {
+    global $dbc;
     if($num != -1 && SOA_THEMECHOICE == 0)
         return; // nothing can be changed
     

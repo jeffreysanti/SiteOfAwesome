@@ -7,6 +7,7 @@ ob_start();
 require_once("global.php");
 
 $params = array();
+$thispg = $_SERVER['REQUEST_URI'];
 if(defined("SOA_REWRITE"))
 {
     $uri = str_replace(strtolower(SOA_ROOT), "", strtolower($_SERVER['REQUEST_URI']));

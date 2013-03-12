@@ -9,6 +9,7 @@ if(!isset($userrow) || $userrow['type'] != 0)
     header("location: ".SOA_ROOT);
     soa_error("Access to Admin Page Denied");
 }
+define("PG_ADMIN", true); // used to verify admin logged in
 
 // find out what page to show
 if(count($params) > 0){
@@ -19,6 +20,10 @@ else{
 }
 
 switch($pg){
+    case "accounts":{
+        require("accounts.php");
+        break;
+    }
     default: {      // main page of admin screen
         writeheader("SiteOfAwesome Administration", "admin.css");
         
@@ -36,19 +41,21 @@ switch($pg){
 }
 
 class AdminNavEntry{
-    public $link, $text, $active;
-    public function __construct($txt, $lnk, $act=false) {
+    public $link, $text, $active, $inner;
+    public function __construct($txt, $lnk, $act=false, $in=false) {
         $this->active = $act;
         $this->link = $lnk;
         $this->text = $txt;
+        $this->inner = $in;
     }
     
     public function write(){
+        $cl = ($this->inner) ? ' class="sub"' : "";
         if($this->active){
-            echo '              <li id="active">'.$this->text.'</li>';
+            echo '              <li id="active"'.$cl.'>'.$this->text.'</li>';
         }
         else{
-            echo '              <li><a href="'.$this->link.'">'.$this->text.'</a></li>';
+            echo '              <li'.$cl.'><a href="'.$this->link.'">'.$this->text.'</a></li>';
         }
         echo NL;
     }

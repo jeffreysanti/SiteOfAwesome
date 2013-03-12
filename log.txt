@@ -15,3 +15,8 @@ Thu, 07 Mar 2013 21:39:39 :: User with unknown type: 0, id: 1
 Thu, 07 Mar 2013 21:39:40 :: User with unknown type: 0, id: 1
 Thu, 07 Mar 2013 21:39:40 :: User with unknown type: 0, id: 1
 Thu, 07 Mar 2013 21:39:40 :: User with unknown type: 0, id: 1
+Sun, 10 Mar 2013 22:07:22 :: Database Connection Failure [Check config.php]: SQLSTATE[HY000] [1049] Unknown database 'soa'
+Tue, 12 Mar 2013 20:38:41 :: Missing Config
+Tue, 12 Mar 2013 20:39:03 :: Missing Config
+Tue, 12 Mar 2013 20:39:10 :: Missing Config
+Tue, 12 Mar 2013 21:22:14 :: Database failure: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '(paramname, val) INTO soa_siteparam VALUES ('asignup', 'false')' at line 1
