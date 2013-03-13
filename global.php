@@ -175,7 +175,7 @@ function writeheader($title = "SiteOfAwesome", $cssdoc="main.css"){
 '   <head>'.NL.
 '       <title>'.$title.'</title>'.NL.
 '       <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">'.NL.
-'       <link rel="stylesheet" type="text/css" href="/SiteOfAwesome/css/'.SOA_THEME.'/'.$cssdoc.'" />'.NL.
+'       <link rel="stylesheet" type="text/css" href="'.SOA_ROOT.'/css/'.SOA_THEME.'/'.$cssdoc.'" />'.NL.
 '   </head>'.NL.
 '   <body>'.NL.
 '   <table id="container">'.NL.
@@ -201,6 +201,49 @@ function writefooter($script=""){
         }
         echo
 '</html>'.NL;
+}
+
+// returns a specified site param; if non-existancant creates if default value not null
+function getSiteDBParam($param, $key=null, $defval=null){
+    $qstr = "SELECT * FROM ".DB_PRE."_siteparam WHERE paramname = ?";
+    if(!is_null($key))
+        $qstr = $qstr . " AND keyval = ?";
+    
+    global $dbc;
+    try{
+        $q = $dbc->prepare($qstr);
+        if(is_null($key))    $q->execute(array($param));
+        else                 $q->execute(array($param, $key));
+        if($q->rowCount() < 1) // insert new entry
+        {
+            if(is_null($defval))
+                return null;
+            if(is_null($key))
+                $key = -1;
+            $qstr = "INSERT INTO ".DB_PRE."_siteparam (paramname, keyval, val)";
+            $qstr = $qstr . " VALUES (?, ?, ?)";
+            $q = $dbc->prepare($qstr);
+            $q->execute(array($param, $key, $defval));
+            return $defval;
+        }
+        return $q->fetch(PDO::FETCH_ASSOC)["val"];
+    }catch(PDOException $e){
+        soa_error("Database failure: ".$e->getMessage());
+    }
+}
+
+function updateSiteDBParam($param, $val, $key=null){
+    $qstr = "UPDATE ".DB_PRE."_siteparam SET val = ? WHERE paramname = ?";
+    if(!is_null($key))
+        $qstr = $qstr . " AND keyval = ?";
+    global $dbc;
+    try{
+        $q = $dbc->prepare($qstr);
+        if(is_null($key))   $q->execute(array($val, $param));
+        else                $q->execute(array($val, $param, $key));
+    }catch(PDOException $e){
+        soa_error("Database failure: ".$e->getMessage());
+    }
 }
 
 

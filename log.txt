@@ -20,3 +20,9 @@ Tue, 12 Mar 2013 20:38:41 :: Missing Config
 Tue, 12 Mar 2013 20:39:03 :: Missing Config
 Tue, 12 Mar 2013 20:39:10 :: Missing Config
 Tue, 12 Mar 2013 21:22:14 :: Database failure: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '(paramname, val) INTO soa_siteparam VALUES ('asignup', 'false')' at line 1
+Wed, 13 Mar 2013 20:03:09 :: Database failure: SQLSTATE[42000]: Syntax error or access violation: 1065 Query was empty
+Wed, 13 Mar 2013 20:05:13 :: Database failure: SQLSTATE[42000]: Syntax error or access violation: 1065 Query was empty
+Wed, 13 Mar 2013 20:06:24 :: Database failure: SQLSTATE[42000]: Syntax error or access violation: 1065 Query was empty
+Wed, 13 Mar 2013 20:37:06 :: Requsted object not found:img/del.png
+Wed, 13 Mar 2013 20:37:06 :: Requsted object not found:img/login.png
+Wed, 13 Mar 2013 21:00:55 :: User with unknown type: 1, id: 3

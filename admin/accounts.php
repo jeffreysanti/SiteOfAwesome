@@ -19,6 +19,18 @@ switch($pg){
         require("accounts/add.php");
         break;
     }
+    case "list":{
+        require("accounts/list.php");
+        break;
+    }
+    case "sudo":{
+        require("accounts/sudo.php");
+        break;
+    }
+    case "del":{
+        require("accounts/del.php");
+        break;
+    }
     default: {
         if(isset($_POST['submit'])){ // setting has been changed
             // process data
@@ -27,26 +39,12 @@ switch($pg){
             else
                 $asignup = 0;
             
-            // updata database
-            try{
-                $dbc->exec("UPDATE ".DB_PRE."_siteparam SET val = '$asignup' WHERE paramname = 'asignup'");
-            }catch(PDOException $e){
-                soa_error("Database failure: ".$e->getMessage());
-            }
+            // update database
+            updateSiteDBParam('asignup', $asignup, "-1");
         }
         
         // get database info
-        try{
-            $r = $dbc->query("SELECT * FROM ".DB_PRE."_siteparam WHERE paramname = 'asignup'")->fetchAll();
-            if(count($r) < 1){
-                $dbc->exec("INSERT INTO ".DB_PRE."_siteparam (paramname, val) VALUES ('asignup', '0')");
-                $asignup = false;
-            }else{
-                $asignup = $r[0]['val'];
-            }
-        }catch(PDOException $e){
-            soa_error("Database failure: ".$e->getMessage());
-	}
+        $asignup = getSiteDBParam("asignup", null, "-1");
         
         // draw page
         writeheader("Accounts - SiteOfAwesome Administration", "admin.css");
