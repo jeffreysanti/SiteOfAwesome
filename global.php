@@ -99,24 +99,10 @@ if(file_exists("config.php"))
     require_once("core/dbdefn.php");
     $dbc = EstablishDataBaseConnection();
     
-    //load global site data
-    $r = $dbc->query("SELECT * FROM `".DB_PRE."_siteparam` WHERE keyval = '-1'");
-    if($r != FALSE)
-    {
-        $siteparams = $r->fetchAll();
-    }
-    
     //load site info from db
-    // is theme modifiable
-    @define("SOA_THEMECHOICE", 0);
-    foreach ($siteparams as $value) {
-        if($value['paramname'] == "tchoice" && $value["keyval"] == -1 && $value["val"] == 1)
-        {
-            @define("SOA_THEMECHOICE", 1); // the admin allows subthemes
-        }
-    }
-    define("SOA_THEME", "theme_main"); // default if else fails :(
-    LoadSiteSettings(-1, $siteparams);
+    // is theme modifiable ?
+    if(getSiteDBParam("tchoice", "-1", "1"))
+        define("SOA_THEMECHOICE", 1); // the admin allows subthemes
 }
 else
 {
@@ -144,28 +130,20 @@ function params(array $a) // constructs paramters on url
     return $s;
 }
 
-function LoadSiteSettings($num, $a=FALSE)
+// loads the proper theme into view
+function LoadSiteSettings($num)
 {
-    global $dbc;
     if($num != -1 && SOA_THEMECHOICE == 0)
         return; // nothing can be changed
     
-    if($a == FALSE)
+    $t = getSiteDBParam("theme", $num);
+    if($t != null && file_exists("css/".$t."/main.css"))
     {
-        $r = $dbc->query("SELECT * FROM `".DB_PRE."_siteparam` WHERE keyval = '".$num."'");
-        if($r != FALSE)
-        {
-            $a = $r->fetchAll();
-        }
+        define("SOA_THEME", $t);
     }
-    foreach ($a as $value) {
-        if($value["keyval"] == $num)
-        {
-            if($value['keyval'] == 'theme' && ($num == -1 || SOA_THEMECHOICE == 1))  // theme setting
-                @define("SOA_THEME", $value['val']);
-        }
+    else{
+        define("SOA_THEME", "theme_main");
     }
-    
 }
 
 function writeheader($title = "SiteOfAwesome", $cssdoc="main.css"){
@@ -244,6 +222,62 @@ function updateSiteDBParam($param, $val, $key=null){
     }catch(PDOException $e){
         soa_error("Database failure: ".$e->getMessage());
     }
+}
+
+// thanks to "yarms at mail dot ru" on: http://php.net/manual/en/ref.zip.php
+function unzip($file)
+{
+    // TODO: Test on dev environemnt with zip enabled :(
+    if(!defined("ZIP_ENABLED") || ZIP_ENABLED == false)
+        return false;
+    
+    $zip = zip_open($file);
+    if(!$zip){
+        soa_error("Cannot open zip: ".$file, false, false, true);
+        return false;
+    }
+
+    while($zip_entry = zip_read($zip)) {
+       $zdir = dirname(zip_entry_name($zip_entry));
+       $zname = zip_entry_name($zip_entry);
+
+       if(!zip_entry_open($zip,$zip_entry,"r")){
+           soa_error("File extraction failed: ".$zname . " from: ".$file, false, false, true);
+           return false;
+       }
+       if(!is_dir($zdir))
+           mkdirr($zdir,0777);
+
+       $zip_fs = zip_entry_filesize($zip_entry);
+       if(empty($zip_fs))
+           continue;
+
+       $zz = zip_entry_read($zip_entry, $zip_fs);
+
+       $z = fopen($zname,"w");
+       fwrite($z, $zz);
+       fclose($z);
+       zip_entry_close($zip_entry);
+    }
+    zip_close($zip);
+    return true;
+}
+
+function mkdirr($pn,$mode=null) {
+    if(is_dir($pn) || empty($pn))
+        return true;
+    $pn = str_replace(array('/', ''), DIRECTORY_SEPARATOR, $pn);
+
+    if(is_file($pn)) {
+        soa_error('mkdirr() File exists');
+    }
+
+    $next_pathname = substr($pn, 0, strrpos($pn, DIRECTORY_SEPARATOR));
+    if(mkdirr($next_pathname, $mode)) {
+        if(!file_exists($pn)) 
+            return mkdir($pn,$mode);
+    }
+    return false;
 }
 
 

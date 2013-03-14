@@ -33,6 +33,7 @@ checkForDataRedirect($params); // fullfill any data requests
 session_start();
 if(!isset($_SESSION['soa_uid'])) // they're not logged-in yet
 {
+    LoadSiteSettings(-1);
     require("login.php");
     die();
 }
@@ -54,6 +55,7 @@ $userrow = $r[0]; // isolate 1st row (hopefully there were not multiple matches)
 // sort by type
 switch($userrow['type']){
     case 0:{            // Administrator
+        LoadSiteSettings(-1);
         require("admin/page.php");
         break;
     }

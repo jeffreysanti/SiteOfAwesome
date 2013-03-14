@@ -12,4 +12,6 @@ define("DB_PASS", "");
 
 define("SOA_ROOT", "/SiteOfAwesome");
 define("SOA_REWRITE", true);
+
+define("ZIP_ENABLED", false);
 ?>

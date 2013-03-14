@@ -101,7 +101,12 @@ if(isset($_POST['submit'])) // manage form submission
 		fwrite($fl, 'define("DB_PASS", "'.$dbpass.'");'.NL.NL);
 		
 		fwrite($fl, 'define("SOA_ROOT", "'.$instdir.'");'.NL);
-		fwrite($fl, 'define("SOA_REWRITE", true);'.NL);
+		fwrite($fl, 'define("SOA_REWRITE", true);'.NL.NL);
+                
+                if(extension_loaded("zip"))
+                    fwrite($fl, 'define("ZIP_ENABLED", true);');
+                else
+                    fwrite($fl, 'define("ZIP_ENABLED", false);');
 		
 		fwrite($fl, "?>".NL);
 		fclose($fl);

@@ -24,6 +24,10 @@ switch($pg){
         require("accounts.php");
         break;
     }
+    case "look":{
+        require("look.php");
+        break;
+    }
     default: {      // main page of admin screen
         writeheader("SiteOfAwesome Administration", "admin.css");
         
