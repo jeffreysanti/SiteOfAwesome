@@ -30,6 +30,12 @@ checkForDataRedirect($params); // fullfill any data requests
 
 // begin page stuff :)
 
+if(count($params) > 0 && $params[1] == "reg.php") // register instruction
+{
+    require("reg.php");
+    die();
+}
+
 session_start();
 if(!isset($_SESSION['soa_uid'])) // they're not logged-in yet
 {
@@ -55,8 +61,11 @@ $userrow = $r[0]; // isolate 1st row (hopefully there were not multiple matches)
 // sort by type
 switch($userrow['type']){
     case 0:{            // Administrator
-        LoadSiteSettings(-1);
         require("admin/page.php");
+        break;
+    }
+    case 1:{            // Client
+        require("client/page.php");
         break;
     }
     default:{

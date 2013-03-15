@@ -87,7 +87,6 @@ body, html {
     box-sizing:border-box; /* IE */
     -moz-box-sizing:border-box; /* Firefox */
     -webkit-box-sizing:border-box; /* Safari */
-    width: 200px;
 }
 #header_menu a:link, #header_menu a:visited{
     display:block;

@@ -11,6 +11,8 @@ if(!isset($userrow) || $userrow['type'] != 0)
 }
 define("PG_ADMIN", true); // used to verify admin logged in
 
+LoadSiteSettings(-1); // loads theme
+
 // find out what page to show
 if(count($params) > 0){
     $pg = $params[1];
@@ -36,8 +38,13 @@ switch($pg){
         array_push($a, new AdminNavEntry("Main Page", "", true));
         array_push($a, new AdminNavEntry("Accounts", SOA_ROOT.params(array("accounts"))));
         array_push($a, new AdminNavEntry("Appearance", SOA_ROOT.params(array("look"))));
+        array_push($a, new AdminNavEntry("&nbsp;", "-")); // seperator
+        array_push($a, new AdminNavEntry("Logout", SOA_ROOT."/logout.php"));
         
         admin_writeheader("SiteOfAwesome Administration", $a);
+        
+        // Main page: TODO: Add ability to change password
+        
         admin_writefooter();
         writefooter();
         break;
@@ -47,6 +54,8 @@ switch($pg){
 class AdminNavEntry{
     public $link, $text, $active, $inner;
     public function __construct($txt, $lnk, $act=false, $in=false) {
+        if($lnk == "")
+            $lnk = SOA_ROOT;
         $this->active = $act;
         $this->link = $lnk;
         $this->text = $txt;
@@ -57,6 +66,10 @@ class AdminNavEntry{
         $cl = ($this->inner) ? ' class="sub"' : "";
         if($this->active){
             echo '              <li id="active"'.$cl.'>'.$this->text.'</li>';
+        }
+        elseif(!$this->active && $this->link == "-") // seperator
+        {
+            echo '              <li'.$cl.'>'.$this->text.'</li>';
         }
         else{
             echo '              <li'.$cl.'><a href="'.$this->link.'">'.$this->text.'</a></li>';

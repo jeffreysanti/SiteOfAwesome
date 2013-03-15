@@ -74,3 +74,22 @@ Thu, 14 Mar 2013 22:35:56 :: Requsted object not found:img/theme_main%20(copy)/d
 Thu, 14 Mar 2013 22:39:24 :: CSS NOT FOUND: css/theme_main%20(copy)/admin.css
 Thu, 14 Mar 2013 22:39:24 :: Requsted object not found:img/theme_main%20(copy)/allow.png
 Thu, 14 Mar 2013 22:39:24 :: Requsted object not found:img/theme_main%20(copy)/del.png
+Fri, 15 Mar 2013 19:45:02 :: Requsted object not found:img/login.png
+Fri, 15 Mar 2013 19:45:02 :: Requsted object not found:img/del.png
+Fri, 15 Mar 2013 19:45:10 :: Requsted object not found:img/del.png
+Fri, 15 Mar 2013 19:45:10 :: Requsted object not found:img/login.png
+Fri, 15 Mar 2013 19:45:58 :: User with unknown type: 1, id: 3
+Fri, 15 Mar 2013 20:06:36 :: User with unknown type: 1, id: 3
+Fri, 15 Mar 2013 20:08:15 :: User with unknown type: 1, id: 3
+Fri, 15 Mar 2013 20:10:42 :: Access to Admin Page Denied
+Fri, 15 Mar 2013 20:10:42 :: Access to Admin Page Denied
+Fri, 15 Mar 2013 20:10:42 :: Access to Admin Page Denied
+Fri, 15 Mar 2013 20:10:42 :: Access to Admin Page Denied
+Fri, 15 Mar 2013 20:10:42 :: Access to Admin Page Denied
+Fri, 15 Mar 2013 20:10:42 :: Access to Admin Page Denied
+Fri, 15 Mar 2013 20:10:42 :: Access to Admin Page Denied
+Fri, 15 Mar 2013 20:10:42 :: Access to Admin Page Denied
+Fri, 15 Mar 2013 20:10:42 :: Access to Admin Page Denied
+Fri, 15 Mar 2013 20:10:42 :: Access to Admin Page Denied
+Fri, 15 Mar 2013 20:10:42 :: Access to Admin Page Denied
+Fri, 15 Mar 2013 21:14:33 :: CSS NOT FOUND: css/theme_main/f.css

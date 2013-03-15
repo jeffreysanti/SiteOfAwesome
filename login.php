@@ -47,7 +47,15 @@ echo
 '	    <input name="user" type="text" style="top:50px;right:50px;" />'.NL.
 '	    <span style="position: absolute; top:80px; left:50px;">Password</span>'.NL.
 '	    <input name="password" type="password" style="top:80px;right:50px;" />'.NL.
-'	    <input name="submit" type="submit" value="Login" style="left:50px; top:110px; width: 280px; height:26px;" />'.NL.
+'	    <input name="submit" type="submit" value="Login" style="left:50px; top:110px; width: 280px; height:26px;" />'.NL;
+if(getSiteDBParam("asignup", null, "1") == 1){
+    // allow user registration
+    echo 
+'           <span class="register" style="position: absolute; top: 145px; left: 50px;">
+                <a href="reg.php">Register for Free</span></a>';
+}
+
+echo
 '       </form></div>'.NL.
 '   </body>'.NL.
 '</html>';

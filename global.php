@@ -133,8 +133,10 @@ function params(array $a) // constructs paramters on url
 // loads the proper theme into view
 function LoadSiteSettings($num)
 {
-    if($num != -1 && SOA_THEMECHOICE == 0)
-        return; // nothing can be changed
+    if($num != -1 && SOA_THEMECHOICE == 0){
+        LoadSiteSettings(-1); // load default theme
+        return;
+    }
     
     $t = getSiteDBParam("theme", $num);
     if($t != null && file_exists("css/".$t."/main.css"))

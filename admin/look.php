@@ -117,6 +117,8 @@ $a = array();
 array_push($a, new AdminNavEntry("Main Page", ""));
 array_push($a, new AdminNavEntry("Accounts", SOA_ROOT.params(array("accounts"))));
 array_push($a, new AdminNavEntry("Appearance", SOA_ROOT.params(array("look")), true));
+array_push($a, new AdminNavEntry("&nbsp;", "-")); // seperator
+array_push($a, new AdminNavEntry("Logout", SOA_ROOT."/logout.php"));
 
 admin_writeheader("Appearance - SiteOfAwesome Administration", $a);
 

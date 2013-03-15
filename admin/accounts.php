@@ -44,7 +44,7 @@ switch($pg){
         }
         
         // get database info
-        $asignup = getSiteDBParam("asignup", null, "-1");
+        $asignup = getSiteDBParam("asignup", null, "1");
         
         // draw page
         writeheader("Accounts - SiteOfAwesome Administration", "admin.css");
@@ -56,6 +56,8 @@ switch($pg){
         array_push($a, new AdminNavEntry("Add Account", SOA_ROOT.params(array("accounts", "add")), false, true));
         array_push($a, new AdminNavEntry("List Accounts", SOA_ROOT.params(array("accounts", "list")), false, true));
         array_push($a, new AdminNavEntry("Appearance", SOA_ROOT.params(array("look"))));
+        array_push($a, new AdminNavEntry("&nbsp;", "-")); // seperator
+        array_push($a, new AdminNavEntry("Logout", SOA_ROOT."/logout.php"));
 
         admin_writeheader("Accounts - SiteOfAwesome Administration", $a);
 
