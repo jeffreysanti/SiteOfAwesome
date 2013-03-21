@@ -133,6 +133,7 @@ function params(array $a) // constructs paramters on url
 // loads the proper theme into view
 function LoadSiteSettings($num)
 {
+    require("lang/eng_us.php"); // TODO: Support for more languages
     if($num != -1 && SOA_THEMECHOICE == 0){
         LoadSiteSettings(-1); // load default theme
         return;

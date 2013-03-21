@@ -24,6 +24,10 @@ else{
 }
 
 switch($pg){
+    case "cg":{
+        require("cg.php");
+        break;
+    }
     default: {
         require("mainpg.php");
         break;

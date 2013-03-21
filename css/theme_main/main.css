@@ -411,6 +411,10 @@ input, textarea{
     top: 32px;
 }
 
+.notice{
+    color: red;
+    font-weight: bold;
+}
 
 
 

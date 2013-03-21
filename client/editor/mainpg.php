@@ -7,22 +7,22 @@
 if(!defined("PG_CL"))
     soa_error("editor/mainpg.php page accessed without permission");
 
-writeheader("Editor - SiteOfAwesome", "main.css");
+writeheader(SOAL_EDITORTITLE, "main.css");
 $a = array();
-array_push($a, new menuItem("SiteOfAwesome Home".ARROW, SOA_ROOT));
-array_push($a, new menuItem("Editor", SOA_ROOT.params(array("editor"))));
+array_push($a, new menuItem(SOAL_HOME.ARROW, SOA_ROOT));
+array_push($a, new menuItem(SOAL_EDITOR, SOA_ROOT.params(array("editor"))));
 
-client_header("SiteOfAwesome", "Editor", $a, false);
+client_header(SOAL_SOA, SOAL_EDITOR, $a, false);
 
 echo
-'           <span class="content_h1">Editor Directory</span><br/><br />'.NL;
+'           <span class="content_h1">'.SOAL_EDTDIR.'</span><br/><br />'.NL;
 
 $d = new TileDirectory();
-$d->AddBlock(new DirectoryBlock("Client Group Manager", SOA_ROOT.params(array("editor","cg"))));
-$d->AddBlock(new DirectoryBlock("Appearance Configuration", SOA_ROOT.params(array("editor","look"))));
-$d->AddBlock(new DirectoryBlock("File Browser", SOA_ROOT."/kcfinder/browse.php"));
-$d->AddBlock(new DirectoryBlock("About You / Contact Info", SOA_ROOT.params(array("editor","info"))));
-$d->AddBlock(new DirectoryBlock("Article Manager", SOA_ROOT.params(array("editor","art"))));
+$d->AddBlock(new DirectoryBlock(SOAL_CGEDITOR, SOA_ROOT.params(array("editor","cg"))));
+$d->AddBlock(new DirectoryBlock(SOAL_LOOKEDITOR, SOA_ROOT.params(array("editor","look"))));
+$d->AddBlock(new DirectoryBlock(SOAL_FILEBROWSER, SOA_ROOT."/kcfinder/browse.php"));
+$d->AddBlock(new DirectoryBlock(SOAL_YOUCONTACTEDITOR, SOA_ROOT.params(array("editor","info"))));
+$d->AddBlock(new DirectoryBlock(SOAL_ARTICLEEDITOR, SOA_ROOT.params(array("editor","art"))));
 
 
 echo $d->output();
