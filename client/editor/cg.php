@@ -7,6 +7,25 @@
 if(!defined("PG_CL"))
     soa_error("editor/cg.php page accessed without permission");
 
+// check for other pg
+if(count($params) > 2){
+    $pg = $params[3];
+}
+else{
+    $pg = "";
+}
+
+switch($pg){
+    case "g":{ // group
+        require("cg_g.php");
+        die();
+        break;
+    }
+    default: {
+        break;
+    }
+}
+
 $msg = "";
 if(isset($_POST['submit']))
 {
@@ -57,6 +76,32 @@ if(isset($_POST['submit']))
             }
         }
     }
+    
+    // remove groups
+    if(isset($_POST['rmg'])){
+        foreach ($_POST['rmg'] as $value) {
+             try{
+                $q = $dbc->prepare('DELETE FROM '.DB_PRE.'_groups WHERE id = ? AND owner = ? LIMIT 1');
+                $q->execute(array($value, $userrow['id']));
+            }catch(PDOException $e){
+                soa_error("Database failure: ".$e->getMessage());
+            }
+        }
+        $msg = $msg . SOAL_MSG_GROUP_REMOVED . "<br />".NL;
+    }
+    // remove clients
+    if(isset($_POST['rmc'])){
+        foreach ($_POST['rmc'] as $value) {
+             try{
+                $q = $dbc->prepare('DELETE FROM '.DB_PRE.'_users WHERE id = ? AND owner = ? LIMIT 1');
+                $q->execute(array($value, $userrow['id']));
+                
+            }catch(PDOException $e){
+                soa_error("Database failure: ".$e->getMessage());
+            }
+        }
+        $msg = $msg . SOAL_MSG_CLIENT_REMOVED . "<br />".NL;
+    }
 }
 
 // retrieve information to populate data with
@@ -67,7 +112,7 @@ writeheader(SOAL_EDITORTITLE, "main.css");
 $a = array();
 array_push($a, new menuItem(SOAL_HOME.ARROW, SOA_ROOT));
 array_push($a, new menuItem(SOAL_EDITOR.ARROW, SOA_ROOT.params(array("editor"))));
-array_push($a, new menuItem(SOAL_CGEDITOR, SOA_ROOT.params(array("editor"))));
+array_push($a, new menuItem(SOAL_CGEDITOR, SOA_ROOT.params(array("editor", "cg"))));
 
 client_header(SOAL_SOA, SOAL_EDITOR, $a, false);
 
@@ -112,7 +157,7 @@ foreach($r as $value){
     echo
 '                   <tr>'.NL.
 '                       <td><a href="'.SOA_ROOT.params(array('editor','cg','g',$value['id'])).'">'.$value['name'].'</a></td>'.NL.
-'                       <td align="center"><input type="checkbox" value="'.$value['id'].'" name="rmg" /></td>'.NL.
+'                       <td align="center"><input type="checkbox" value="'.$value['id'].'" name="rmg[]" /></td>'.NL.
 '                   <tr>'.NL;
     
 }
@@ -125,7 +170,7 @@ echo
 '                       <td><input type="text" name="groupname" /></td>'.NL.
 '                   </tr>'.NL.
 '               </table><br />'.NL.
-'               <span class="content_h2">Client List</span><br/><br />'.NL.
+'               <span class="content_h2">'.SOAL_CLIENT_LIST.'</span><br/><br />'.NL.
 '               <div class="innerBorder"><table>'.NL.
 '                   <tr>'.NL.
 '                       <th>'.SOAL_CLIENT.'</th>'.NL.
@@ -133,23 +178,18 @@ echo
 '                       <th>'.SOAL_REMOVE.'</th>'.NL.
 '                   </tr>'.NL;
 
-// client list
+// subclient list
 try{
     $r = $dbc->query('SELECT * FROM '.DB_PRE.'_users WHERE owner='.$userrow['id'].' ORDER BY username')->fetchAll();
 }catch(PDOException $e){
     soa_error("Database failure: ".$e->getMessage());
 }
 foreach($r as $value){
-    /*<td><a href="/SiteOfAwesome/test/client_cdet.html">Harvard</a></td>
-                            <td>Schools, Show-Art</td>
-                            <td align="center"><input type="checkbox" value="1" name="rmc" /></td>*/
-    // get group list of subclient
-    //$r2 = $dbc->query('SELECT * FROM '.DB_PRE.'_users WHERE owner='.$userrow['id'].' ORDER BY username')->fetchAll();
     echo
 '                   <tr>'.NL.
 '                       <td><a href="'.SOA_ROOT.params(array('editor','cg','c',$value['id'])).'">'.$value['username'].'</a></td>'.NL.
 '                       <td>...</td>'.NL.
-'                       <td align="center"><input type="checkbox" value="'.$value['id'].'" name="rmc" /></td>'.NL.
+'                       <td align="center"><input type="checkbox" value="'.$value['id'].'" name="rmc[]" /></td>'.NL.
 '                   <tr>'.NL;
     
 }

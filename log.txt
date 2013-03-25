@@ -1,0 +1,2 @@
+Mon, 25 Mar 2013 20:53:13 :: Database failure: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'WHERE owner = 3 ORDER BY name' at line 1
+Mon, 25 Mar 2013 21:19:47 :: Database failure: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '(name) VALUES (?) WHERE id=?' at line 1

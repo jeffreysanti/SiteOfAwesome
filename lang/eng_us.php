@@ -24,6 +24,7 @@ define("SOAL_ABOUT", "About");
 
 define("SOAL_PUBLICPROFILE", "Public Profile");
 define("SOAL_GROUP_LIST", "Group List");
+define("SOAL_CLIENT_LIST", "Client List");
 define("SOAL_GROUP", "Group");
 define("SOAL_GROUP_S", "Group(s)");
 define("SOAL_CLIENT", "Client");
@@ -35,12 +36,22 @@ define("SOAL_CLIENT_NAME", "Client Name");
 define("SOAL_DONE", "Done");
 define("SOAL_UPDATE", "Update");
 define("SOAL_CANCEL", "Cancel");
+define("SOAL_CLIENT_MEMBERS", "Client Members");
+define("SOAL_UNGROUP", "Ungroup");
+define("SOAL_RESACCESS", "Resource Access");
+define("SOAL_RES_NAME", "Resource Name");
+define("SOAL_TAGS", "Tags");
+define("SOAL_BLOCK", "Block");
 
 define("SOAL_MSG_ERRGRPNAME", "Group name already exists.");
 define("SOAL_MSG_GRPADED", "Group has been added.");
 define("SOAL_MSG_ERRCLINAME", "Client username already exists.");
 define("SOAL_MSG_ERRPSW", "Client password missing, or less than 5 characters.");
 define("SOAL_MSG_CLIADED", "Client has been added.");
+
+define("SOAL_MSG_GROUP_REMOVED", "Group(s) have been removed.");
+define("SOAL_MSG_CLIENT_REMOVED", "Client(s) have been removed.");
+define("SOAL_MSG_CLIENTS_UGROUP", "Client(s) have been ungrouped.");
 
 // c/g page: help
 define("SOAL_PUBLICVIEWING", "Public Viewing");
