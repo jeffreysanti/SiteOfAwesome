@@ -30,6 +30,7 @@ define("SOAL_GROUP_S", "Group(s)");
 define("SOAL_CLIENT", "Client");
 define("SOAL_GROUP_NAME", "Group Name");
 define("SOAL_REMOVE", "Remove");
+define("SOAL_NAME", "Name");
 define("SOAL_LOGIN", "Login");
 define("SOAL_PASSWORD", "Password");
 define("SOAL_CLIENT_NAME", "Client Name");
@@ -42,12 +43,24 @@ define("SOAL_RESACCESS", "Resource Access");
 define("SOAL_RES_NAME", "Resource Name");
 define("SOAL_TAGS", "Tags");
 define("SOAL_BLOCK", "Block");
+define("SOAL_MEMBER", "Member");
+
+define("SOAL_INHERETED", "Inhereted");
+define("SOAL_ADDED", "Added");
+define("SOAL_BLOCKED", "Blocked");
+
+define("SOAL_INHER_MSG", "Explicitly Allowed for Group; Implicitly Allowed for Client");
+define("SOAL_ADDED_MSG", "Explicitly Allowed for Client");
+define("SOAL_BLOCKED_MSG", "Explicitly Blocked for Client");
+
 
 define("SOAL_MSG_ERRGRPNAME", "Group name already exists.");
 define("SOAL_MSG_GRPADED", "Group has been added.");
 define("SOAL_MSG_ERRCLINAME", "Client username already exists.");
 define("SOAL_MSG_ERRPSW", "Client password missing, or less than 5 characters.");
 define("SOAL_MSG_CLIADED", "Client has been added.");
+define("SOAL_MSG_CLIPSWCHD", "Client password has been changed.");
+
 
 define("SOAL_MSG_GROUP_REMOVED", "Group(s) have been removed.");
 define("SOAL_MSG_CLIENT_REMOVED", "Client(s) have been removed.");

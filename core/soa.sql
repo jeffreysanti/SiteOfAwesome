@@ -32,6 +32,7 @@ CREATE TABLE IF NOT EXISTS `soa_users` (
   `password` varchar(32) NOT NULL,
   `type` smallint(6) NOT NULL,
   `owner` int(11) NOT NULL DEFAULT '-1',
+  `name` varchar(30) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 

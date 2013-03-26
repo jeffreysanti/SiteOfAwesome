@@ -21,6 +21,11 @@ switch($pg){
         die();
         break;
     }
+    case "c":{ // client
+        require("cg_c.php");
+        die();
+        break;
+    }
     default: {
         break;
     }
@@ -59,16 +64,21 @@ if(isset($_POST['submit']))
         }
         else
         {
-            $clname = $_POST['clientlogin'];
+            if(!isset($_POST['clientname']))
+                $clname = "";
+            else {
+                $clname = $_POST['clientname'];
+            }
+            $cluname = $_POST['clientlogin'];
             $pswd = md5($_POST['clientpass']);
             try{
                 $q = $dbc->prepare('SELECT * FROM '.DB_PRE.'_users WHERE username = ?');
-                $q->execute(array($clname));
+                $q->execute(array($cluname));
                 if($q->rowCount() > 0)
                     $msg = $msg . SOAL_MSG_ERRCLINAME . "<br />".NL;
                 else {
-                    $q = $dbc->prepare('INSERT INTO '.DB_PRE.'_users (username, password, type, owner) VALUES (?,?,?,?)');
-                    $q->execute(array($clname, $pswd, 2, $userrow['id']));
+                    $q = $dbc->prepare('INSERT INTO '.DB_PRE.'_users (username, password, type, owner, name) VALUES (?,?,?,?,?)');
+                    $q->execute(array($cluname, $pswd, 2, $userrow['id'], $clname));
                     $msg = $msg . SOAL_MSG_CLIADED . "<br />".NL;
                 }
             }catch(PDOException $e){
@@ -185,10 +195,22 @@ try{
     soa_error("Database failure: ".$e->getMessage());
 }
 foreach($r as $value){
+    $query = 'SELECT '.DB_PRE.'_groups.name FROM '.DB_PRE.'_groups RIGHT JOIN '.DB_PRE.'_grp_cl ON ' .
+            DB_PRE.'_groups.id = '.DB_PRE.'_grp_cl.gid WHERE '.DB_PRE.'_grp_cl.uid='.$value['id'];
+    try{
+        $r2 = $dbc->query($query)->fetchAll();
+    }catch(PDOException $e){
+        soa_error("Database failure: ".$e->getMessage());
+    }
+    $grps = "";
+    foreach ($r2 as $value2) {
+        if($grps != "")  $grps = $grps . ", ";
+        $grps = $grps . $value2['name'];
+    }
     echo
 '                   <tr>'.NL.
-'                       <td><a href="'.SOA_ROOT.params(array('editor','cg','c',$value['id'])).'">'.$value['username'].'</a></td>'.NL.
-'                       <td>...</td>'.NL.
+'                       <td><a href="'.SOA_ROOT.params(array('editor','cg','c',$value['id'])).'">'.$value['name'].' ['.$value['username'].']</a></td>'.NL.
+'                       <td>'.$grps.'</td>'.NL.
 '                       <td align="center"><input type="checkbox" value="'.$value['id'].'" name="rmc[]" /></td>'.NL.
 '                   <tr>'.NL;
     
@@ -197,6 +219,10 @@ foreach($r as $value){
 echo
 '               </table></div><br />'.NL.
 '               <table>'.NL.
+'                   <tr>'.NL.
+'                       <td><div class="content_field">'.SOAL_NAME.': </div></td>'.NL.
+'                       <td><input type="text" name="clientname" /></td>'.NL.
+'                   </tr>'.NL.
 '                   <tr>'.NL.
 '                       <td><div class="content_field">'.SOAL_LOGIN.': </div></td>'.NL.
 '                       <td><input type="text" name="clientlogin" /></td>'.NL.

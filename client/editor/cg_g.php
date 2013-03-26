@@ -109,7 +109,7 @@ try{
 foreach($r as $value){
     echo
 '               <tr>'.NL.
-'                   <td><a href="'.SOA_ROOT.params(array('editor','cg','c',$value['uid'])).'">'.$value['username'].'</a></td>'.NL.
+'                   <td><a href="'.SOA_ROOT.params(array('editor','cg','c',$value['uid'])).'">'.$value['name'].' ['.$value['username'].']</a></td>'.NL.
 '                   <td align="center"><input type="checkbox" value="'.$value['uid'].'" name="ugc[]" /></td>'.NL.
 '               <tr>'.NL;
     
