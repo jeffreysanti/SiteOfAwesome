@@ -65,6 +65,10 @@ switch($userrow['type']){
         break;
     }
     case 1:{            // Client
+        $_SESSION['soa_uperm'] = 1;
+        if(!file_exists("kcfinder/upload/".$userrow['id'])){
+            mkdir("kcfinder/upload/".$userrow['id']);
+        }
         require("client/page.php");
         break;
     }

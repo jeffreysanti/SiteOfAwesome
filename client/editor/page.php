@@ -28,6 +28,14 @@ switch($pg){
         require("cg.php");
         break;
     }
+    case "look":{
+        require("look.php");
+        break;
+    }
+    case "info":{
+        require("info.php");
+        break;
+    }
     default: {
         require("mainpg.php");
         break;

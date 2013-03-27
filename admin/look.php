@@ -91,22 +91,16 @@ switch($pg){
 
 if(isset($_POST['submit'])){ // setting has been changed
     // process data
-    if(isset($_POST['allowCustom']))
-        $acust = 1;
-    else
-        $acust = 0;
     
     $thm = $_POST['theme'];
 
     // update database
-    updateSiteDBParam('tchoice', $acust, "-1");
     updateSiteDBParam('theme', $thm, "-1");
     header("location: ".$thispg); // refresh it
     die();
 }
 
 // get database info
-$acust = getSiteDBParam("tchoice", -1, "1");
 getSiteDBParam("theme", -1, "theme_main"); // initialize it if all else
 
 // draw page
@@ -206,10 +200,6 @@ $tmp = $acust ? " checked" : "";
 echo
 '                           </select>'.NL.
 '                       </td>'.NL.
-'                   </tr>'.NL.
-'                   <tr>'.NL.
-'                       <td>Allow users to select installed themes: </td>'.NL.
-'                       <td><input type="checkbox" name="allowCustom"'.$tmp.' /></td>'.NL.
 '                   </tr>'.NL.
 '               </table><br />'.NL.
 '               <input id="save" type="submit" name="submit" value="Save Changes" />'.NL.        

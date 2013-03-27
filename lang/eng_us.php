@@ -17,10 +17,39 @@ define("SOAL_LOOKEDITOR", "Appearance Configuration");
 define("SOAL_FILEBROWSER", "File Browser");
 define("SOAL_YOUCONTACTEDITOR", "About You / Contact Info");
 define("SOAL_ARTICLEEDITOR", "Article Manager");
+define("SOAL_ABOUTYOU", "About You");
+define("SOAL_CONTACT_INFO", "Contact Info");
+
+define("SOAL_FIELD", "Field");
+define("SOAL_INFO", "Information");
+define("SOAL_PUBLIC", "Public");
+define("SOAL_TYPE", "Type");
+define("SOAL_CONTACT_SECTION", "Contact Section");
+
+define("SOAL_CT_PHONE", "Phone");
+define("SOAL_CT_FAX", "Fax");
+define("SOAL_CT_ADDR", "Address");
+define("SOAL_CT_EMAIL", "Email");
+define("SOAL_CT_WEB", "Website(s)");
+define("SOAL_CT_ONLINE", "Online");
+
+define("SOAL_IMAGE", "Image");
+define("SOAL_NO_IMAGE", "Don't Use Image");
+define("SOAL_YOUR_IMAGE", "Your Picture");
+
 
 define("SOAL_CONFIG", "Configuration");
 define("SOAL_GENERAL", "General");
 define("SOAL_ABOUT", "About");
+
+define("SOAL_HEADING", "Heading");
+define("SOAL_MAIN_TITLE", "Main Title");
+define("SOAL_SUB_TITLE", "Subtitle");
+define("SOAL_THEME", "Theme");
+define("SOAL_DEF_THEME", "Default Theme");
+define("SOAL_IS_AWESOME", "Is Awesome");
+define("SOAL_TITLEBAR", "Titlebar");
+
 
 define("SOAL_PUBLICPROFILE", "Public Profile");
 define("SOAL_GROUP_LIST", "Group List");

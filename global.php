@@ -98,11 +98,6 @@ if(file_exists("config.php"))
     // include db connection
     require_once("core/dbdefn.php");
     $dbc = EstablishDataBaseConnection();
-    
-    //load site info from db
-    // is theme modifiable ?
-    if(getSiteDBParam("tchoice", "-1", "1"))
-        define("SOA_THEMECHOICE", 1); // the admin allows subthemes
 }
 else
 {
@@ -134,10 +129,6 @@ function params(array $a) // constructs paramters on url
 function LoadSiteSettings($num)
 {
     require("lang/eng_us.php"); // TODO: Support for more languages
-    if($num != -1 && SOA_THEMECHOICE == 0){
-        LoadSiteSettings(-1); // load default theme
-        return;
-    }
     
     $t = getSiteDBParam("theme", $num);
     if($t != null && file_exists("css/".$t."/main.css"))
@@ -149,14 +140,14 @@ function LoadSiteSettings($num)
     }
 }
 
-function writeheader($title = "SiteOfAwesome", $cssdoc="main.css"){
+function writeheader($title = "SiteOfAwesome", $cssdoc="main.css", $links=""){
     echo 
 '<!DOCTYPE html>'.NL.
 '<html>'.NL.
 '   <head>'.NL.
 '       <title>'.$title.'</title>'.NL.
 '       <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">'.NL.
-'       <link rel="stylesheet" type="text/css" href="'.SOA_ROOT.'/css/'.SOA_THEME.'/'.$cssdoc.'" />'.NL.
+'       <link rel="stylesheet" type="text/css" href="'.SOA_ROOT.'/css/'.SOA_THEME.'/'.$cssdoc.'" />'.NL.$links.
 '   </head>'.NL.
 '   <body>'.NL.
 '   <table id="container">'.NL.

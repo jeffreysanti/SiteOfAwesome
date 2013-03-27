@@ -1,7 +1,7 @@
 <?php
 
 /*
- * Client/Group Editort
+ * Client/Group Editor
  */
 
 if(!defined("PG_CL"))

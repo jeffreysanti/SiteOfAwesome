@@ -18,14 +18,14 @@
 
 $_CONFIG = array(
 
-    'disabled' => false,
+    'disabled' => (isset($_SESSION['soa_uperm']) && $_SESSION['soa_uperm']== 1) ?false:true,
     'denyZipDownload' => false,
     'denyUpdateCheck' => false,
     'denyExtensionRename' => false,
 
     'theme' => "oxygen",
 
-    'uploadURL' => "upload",
+    'uploadURL' => isset($_SESSION['soa_uid'])?"upload/".$_SESSION['soa_uid'] : "",
     'uploadDir' => "",
 
     'dirPerms' => 0755,
@@ -93,7 +93,7 @@ $_CONFIG = array(
     '_check4htaccess' => true,
     //'_tinyMCEPath' => "/tiny_mce",
 
-    '_sessionVar' => &$_SESSION['KCFINDER'],
+    //'_sessionVar' => &$_SESSION['KCFINDER'],
     //'_sessionLifetime' => 30,
     //'_sessionDir' => "/full/directory/path",
 
