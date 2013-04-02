@@ -26,7 +26,7 @@ function CreateDBTablesMySql(PDO $dbConnection, $prefix)
 	    )	ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1");
         
         $dbConnection->exec(					    // USERS
-	    "CREATE TABLE IF NOT EXISTS `soa_siteparam` (
+	    "CREATE TABLE IF NOT EXISTS `".$prefix."_siteparam` (
                 `paramname` varchar(10) NOT NULL,
                 `keyval` int(11) NOT NULL,
                 `val` varchar(32) NOT NULL
@@ -34,7 +34,7 @@ function CreateDBTablesMySql(PDO $dbConnection, $prefix)
         
         $dbConnection->exec(					    // GROUPS
            "
-                CREATE TABLE IF NOT EXISTS `soa_groups` (
+                CREATE TABLE IF NOT EXISTS `".$prefix."_groups` (
                `id` int(11) NOT NULL AUTO_INCREMENT,
                `name` varchar(20) NOT NULL,
                PRIMARY KEY (`id`)
@@ -42,10 +42,23 @@ function CreateDBTablesMySql(PDO $dbConnection, $prefix)
         
         $dbConnection->exec(					    // GROUP-Client connection
            "
-                CREATE TABLE IF NOT EXISTS `soa_grp_cl` (
+                CREATE TABLE IF NOT EXISTS `".$prefix."_grp_cl` (
                     `uid` int(11) NOT NULL,
                     `gid` int(11) NOT NULL
                     ) ENGINE=InnoDB DEFAULT CHARSET=latin1");
+        
+        $dbConnection->exec(					    // Client info
+           "CREATE TABLE IF NOT EXISTS `".$prefix."_client_info` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+    `uid` int(11) NOT NULL,
+  `ft` int(11) NOT NULL,
+  `field` varchar(30) NOT NULL,
+  `info` text NOT NULL,
+  `public` tinyint(4) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1");
+        
+
         
         
     }catch(PDOException $e){

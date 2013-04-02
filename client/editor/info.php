@@ -7,29 +7,71 @@
 if(!defined("PG_CL"))
     soa_error("editor/info.php page accessed without permission");
 
+// define contact types:
+$ctypes = array(0 => SOAL_CT_PHONE,
+                1 => SOAL_CT_FAX,
+                2 => SOAL_CT_ADDR,
+                3 => SOAL_CT_EMAIL,
+                4 => SOAL_CT_WEB,
+                5 => SOAL_CT_ONLINE);
+
+
 if(isset($_POST['submit']))
 {
-    /*if(isset($_POST['title'])){
-        updateSiteDBParam("head1", $_POST['title'], $userrow['id']);
+    // add "about" info
+    if(isset($_POST['iname'])&&isset($_POST['ieditor'])&&strlen($_POST['iname'])>0&&strlen($_POST['ieditor'])>0){
+        $pub = isset($_POST['ipublic']) ? 1 : -1;
+        try{
+            $q = $dbc->prepare('INSERT INTO '.DB_PRE.'_client_info (uid, ft, field, info, public) VALUES (?,?,?,?,?)');
+            $q->execute(array($userrow['id'], -1, $_POST['iname'], $_POST['ieditor'], $pub));
+        }catch(PDOException $e){
+            soa_error("Database failure: ".$e->getMessage());
+        }
     }
-    if(isset($_POST['subtitle'])){
-        updateSiteDBParam("head2", $_POST['subtitle'], $userrow['id']);
+    // add contact info
+    if(isset($_POST['cname'])&&isset($_POST['ceditor'])&&strlen($_POST['cname'])>0&&strlen($_POST['ceditor'])>0){
+        $type = $_POST['ctype'];
+        $str = $_POST['cname'];
+        $pub = isset($_POST['cpublic']) ? 1 : -1;
+        try{
+            $q = $dbc->prepare('INSERT INTO '.DB_PRE.'_client_info (uid, ft, field, info, public) VALUES (?,?,?,?,?)');
+            $q->execute(array($userrow['id'], $type, $str, $_POST['ceditor'], $pub));
+        }catch(PDOException $e){
+            soa_error("Database failure: ".$e->getMessage());
+        }
     }
-    if(isset($_POST['titlebar'])){
-        updateSiteDBParam("titlebar", $_POST['titlebar'], $userrow['id']);
+    // profile image
+    updateSiteDBParam("profimge", isset($_POST['noimg']), $userrow['id']);
+    if(isset($_POST['img']))
+        updateSiteDBParam("profimg", $_POST['img'], $userrow['id']);
+    
+    // remove any "infos" and "contacts" -> merge them to remove abstraction
+    if(!isset($_POST['rmi'])) $_POST['rmi'] = array();
+    if(!isset($_POST['rmc'])) $_POST['rmc'] = array();
+    $a = array_merge($_POST['rmi'], $_POST['rmc']);
+    foreach ($a as $value) {
+        try{
+            $q = $dbc->prepare('DELETE FROM '.DB_PRE.'_client_info WHERE uid=? AND id=? LIMIT 1');
+            $q->execute(array($userrow['id'], $value));
+        }catch(PDOException $e){
+            soa_error("Database failure: ".$e->getMessage());
+        }
     }
-    if(isset($_POST['theme'])){
-        updateSiteDBParam("theme", $_POST['theme'], $userrow['id']);
-    }*/
 }
 
-// retrieve information to populate data with
-/*$title = getSiteDBParam("head1", $userrow['id'], $userrow['username']);
-$subtitle = getSiteDBParam("head2", $userrow['id'], SOAL_IS_AWESOME);
-$titlebar = getSiteDBParam("titlebar", $userrow['id'], SOAL_SOA);
-$theme = getSiteDBParam("theme", $userrow['id'], -1);*/
-
-$link = '        <script src="'.SOA_ROOT.'/ckeditor/ckeditor.js"></script>';
+$link = '        <script src="'.SOA_ROOT.'/ckeditor/ckeditor.js"></script>'.NL.
+        '        <script>'.NL.
+        '           function openKCFinder_singleFile() {'.NL.
+        '               window.KCFinder = {};'.NL.
+        '               window.KCFinder.callBack = function(url) {'.NL.
+        '                   // Actions with url parameter here'.NL.
+        '                   window.KCFinder = null;'.NL.
+        '                   var str=url.replace("'.SOA_ROOT.'/kcfinder/upload/'.$userrow['id']."/".'","");'.NL.
+        '                   document.getElementById("img_box").value=str;'.NL.
+        '               };'.NL.
+        '               window.open(\''.SOA_ROOT.'/kcfinder/browse.php\', \'kcfinder_single\');'.NL.
+        '           }'.NL.
+        '       </script>'.NL;
 writeheader(SOAL_EDITORTITLE, "main.css", $link);
 $a = array();
 array_push($a, new menuItem(SOAL_HOME.ARROW, SOA_ROOT));
@@ -38,7 +80,13 @@ array_push($a, new menuItem(SOAL_YOUCONTACTEDITOR, SOA_ROOT.params(array("editor
 
 client_header(SOAL_SOA, SOAL_EDITOR, $a, false);
 
-//Field 	Information 	Public 	Remove
+
+// load settings
+$imgenabled = getSiteDBParam("profimge", $userrow['id'], -1);
+$imgstr = getSiteDBParam("profimg", $userrow['id'], "");
+
+$imgchk = $imgenabled == 1 ? ' checked="1"' : "";
+
 echo
 '           <form method="post" action="'.SOA_ROOT.params(array('editor', 'info')).'">'.NL.
 '               <span class="content_h1">'.SOAL_YOUCONTACTEDITOR.'</span><br/><br />'.NL.
@@ -51,6 +99,22 @@ echo
 '                       <th>'.SOAL_REMOVE.'</th>'.NL.
 '                   </tr>'.NL;
 // display info
+
+try{
+     $r = $dbc->query('SELECT * FROM '.DB_PRE.'_client_info WHERE uid="'.$userrow['id'].'" AND ft=-1')->fetchAll();
+}catch(PDOException $e){
+    soa_error("Database failure: ".$e->getMessage());
+}
+foreach ($r as $value) {
+    $pub = $value['public'] == 1 ? "Yes" : "No";
+    echo
+'                   <tr>'.NL.
+'                       <td>'.$value['field'].'</td>'.NL.
+'                       <td>'.$value['info'].'</td>'.NL.
+'                       <td align="center">'.$pub.'</td>'.NL.
+'                       <td align="center"><input type="checkbox" value="'.$value['id'].'" name="rmi[]" /></td>'.NL.
+'                   </tr>'.NL;
+}
 
 
 echo
@@ -80,24 +144,40 @@ echo
 '                   </tr>'.NL;
 
 // contact info
+try{
+     $r = $dbc->query('SELECT * FROM '.DB_PRE.'_client_info WHERE uid="'.$userrow['id'].'" AND ft>-1')->fetchAll();
+}catch(PDOException $e){
+    soa_error("Database failure: ".$e->getMessage());
+}
+foreach ($r as $value) {
+    $pub = $value['public'] == 1 ? "Yes" : "No";
+    $type = $ctypes[$value['ft']];
+    echo
+'                   <tr>'.NL.
+'                       <td>'.$type.'</td>'.NL.
+'                       <td>'.$value['field'].'</td>'.NL.
+'                       <td>'.$value['info'].'</td>'.NL.
+'                       <td align="center">'.$pub.'</td>'.NL.
+'                       <td align="center"><input type="checkbox" value="'.$value['id'].'" name="rmc[]" /></td>'.NL.
+'                   </tr>'.NL;
+}
 
 echo
 '               </table></div><br />'.NL.
 '               <table>'.NL.
 '                   <tr>'.NL.
 '                       <td><div class="content_field">'.SOAL_CONTACT_SECTION.': </div></td>'.NL.
-'                       <td><select name="ctype">'.NL.
-'                               <option value="1">'.SOAL_CT_PHONE.'</option>'.NL.
-'                               <option value="1">'.SOAL_CT_FAX.'</option>'.NL.
-'                               <option value="1">'.SOAL_CT_ADDR.'</option>'.NL.
-'                               <option value="1">'.SOAL_CT_EMAIL.'</option>'.NL.
-'                               <option value="1">'.SOAL_CT_WEB.'</option>'.NL.
-'                               <option value="1">'.SOAL_CT_ONLINE.'</option>'.NL.
+'                       <td><select name="ctype">'.NL;
+foreach ($ctypes as $key => $value) {
+    echo
+'                               <option value="'.$key.'">'.$value.'</option>'.NL;
+}
+echo
 '                       </select></td>'.NL.
 '                   </tr>'.NL.
 '                   <tr>'.NL.
 '                       <td><div class="content_field">'.SOAL_FIELD.': </div></td>'.NL.
-'                       <td><input type="text" name="cfield" /></td>'.NL.
+'                       <td><input type="text" name="cname" /></td>'.NL.
 '                   </tr>'.NL.
 '                   <tr>'.NL.
 '                       <td><div class="content_field">'.SOAL_INFO.': </div></td>'.NL.
@@ -114,16 +194,31 @@ echo
 '                   <table>'.NL.
 '                       <tr>'.NL.
 '                           <td><div class="content_field">'.SOAL_NO_IMAGE.': </div></td>'.NL.
-'                           <td><input type="checkbox" name="noimg" /></td>'.NL.
+'                           <td><input type="checkbox" name="noimg"'.$imgchk.' /></td>'.NL.
 '                       </tr>'.NL.
 '                       <tr>'.NL.
 '                           <td><div class="content_field">'.SOAL_IMAGE.': </div></td>'.NL.
-'                           <td><input type="text" name="img" value="bg.png" /></td>'.NL.
+'                           <td><input type="text" name="img" id="img_box" value="'.$imgstr.'" />'.
+'                               <a href="#" onclick="openKCFinder_singleFile()">['.SOAL_FILEBROWSER.']</a></td>'.NL.
 '                       </tr>'.NL.
 '                   </table>'.NL.
 '                   </td>'.NL.
-'                   <td valign="top">'.NL.
-'                       <img src="/SiteOfAwesome/img/theme_main/bg.png" alt="'.SOAL_YOUR_IMAGE.'" width="200" />'.NL.
+'                   <td valign="top">'.NL;
+if(SOA_REWRITE)
+    define ("SOA_ULOAD_DIR", "kcfinder/");
+else
+    define("SOA_THEMES_DIR", "../../kcfinder/");
+if(!chdir(SOA_ULOAD_DIR))
+    soa_error ("chdir failure: ".SOA_ULOAD_DIR. " from ".getcwd());
+
+if($imgenabled == 1 && file_exists(("upload/".$userrow['id']."/".$imgstr))){
+    echo
+'                       <img src="'.SOA_ROOT.'/kcfinder/upload/'.$userrow['id'].'/'.$imgstr.'" alt="'.SOAL_YOUR_IMAGE.'" width="200" />'.NL;
+}elseif ($imgenabled == 1) {
+    echo
+'                       <span class="notice">Error: Image Not Found</span>'.NL;
+}
+echo
 '                   </td>'.NL.
 '               </table><br />'.NL.
 '               <span class="content_h2">'.SOAL_DONE.':</span><br/>'.NL.
