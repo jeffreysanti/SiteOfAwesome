@@ -36,6 +36,10 @@ switch($pg){
         require("info.php");
         break;
     }
+    case "art":{
+        require("art.php");
+        break;
+    }
     default: {
         require("mainpg.php");
         break;

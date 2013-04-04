@@ -58,6 +58,15 @@ function CreateDBTablesMySql(PDO $dbConnection, $prefix)
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1");
         
+        $dbConnection->exec(					    // Client info
+           "CREATE TABLE IF NOT EXISTS `".$prefix."_art` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `uid` int(11) NOT NULL,
+  `name` varchar(40) NOT NULL,
+  `text` text NOT NULL,
+  `pub` tinyint(4) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;");
 
         
         

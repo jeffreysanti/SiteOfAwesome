@@ -20,6 +20,8 @@ define("SOAL_ARTICLEEDITOR", "Article Manager");
 define("SOAL_ABOUTYOU", "About You");
 define("SOAL_CONTACT_INFO", "Contact Info");
 
+define("SOAL_ARTICLE_LIST", "Article List");
+
 define("SOAL_FIELD", "Field");
 define("SOAL_INFO", "Information");
 define("SOAL_PUBLIC", "Public");
@@ -50,6 +52,14 @@ define("SOAL_DEF_THEME", "Default Theme");
 define("SOAL_IS_AWESOME", "Is Awesome");
 define("SOAL_TITLEBAR", "Titlebar");
 
+define("SOAL_ADD_ARTICLE", "Add Article");
+define("SOAL_TAGS_SBC", "Tags (Separate by Comma)");
+define("SOAL_FULL_TEXT", "Full Text");
+define("SOAL_PERMISSIONS", "Permissions");
+define("SOAL_ACCESS", "Access");
+define("SOAL_ALLOW", "Allow");
+define("SOAL_VISIBLE", "Visible");
+define("SOAL_INVISIBLE", "Invisible");
 
 define("SOAL_PUBLICPROFILE", "Public Profile");
 define("SOAL_GROUP_LIST", "Group List");
@@ -78,9 +88,12 @@ define("SOAL_INHERETED", "Inhereted");
 define("SOAL_ADDED", "Added");
 define("SOAL_BLOCKED", "Blocked");
 
+define("SOAL_ARTICLE_NAME", "Article Name");
+
 define("SOAL_INHER_MSG", "Explicitly Allowed for Group; Implicitly Allowed for Client");
 define("SOAL_ADDED_MSG", "Explicitly Allowed for Client");
 define("SOAL_BLOCKED_MSG", "Explicitly Blocked for Client");
+define("SOAL_IMPINV", "Implicitly Not Visible");
 
 
 define("SOAL_MSG_ERRGRPNAME", "Group name already exists.");
