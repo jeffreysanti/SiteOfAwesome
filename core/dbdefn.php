@@ -67,6 +67,27 @@ function CreateDBTablesMySql(PDO $dbConnection, $prefix)
   `pub` tinyint(4) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;");
+        
+          $dbConnection->exec(					    // tags
+           "CREATE TABLE IF NOT EXISTS `".$prefix."_tags` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `uid` int(11) NOT NULL,
+  `text` varchar(40) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;");
+          
+           $dbConnection->exec(					    // tag connector
+           "CREATE TABLE IF NOT EXISTS `".$prefix."_tagcon` (
+  `tid` int(11) NOT NULL,
+  `aid` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;");
+           
+           $dbConnection->exec(					    // article permissions
+           "CREATE TABLE IF NOT EXISTS `".$prefix."_acon` (
+  `aid` int(11) NOT NULL,
+  `type` tinyint(4) NOT NULL,
+  `id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;");
 
         
         

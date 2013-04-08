@@ -52,6 +52,20 @@ if(isset($_POST['submit']))
         }
         $msg = $msg . SOAL_MSG_CLIENTS_UGROUP . "<br />".NL;
     }
+    
+    // remove resources
+    if(!isset($_POST['rmr'])) $_POST['rmr'] = array();
+    try{
+        $q = $dbc->prepare('DELETE FROM '.DB_PRE.'_acon WHERE aid = ? AND type = ? AND id=? LIMIT 1');
+        
+        foreach ($_POST['rmr'] as $value) {
+            $q->execute(array($value, 0, $gid));
+        }
+    }catch(PDOException $e){
+        soa_error("Database failure: ".$e->getMessage());
+    }
+
+    
     // remove clients
     /*if(isset($_POST['rmc'])){
         foreach ($_POST['rmc'] as $value) {
@@ -125,23 +139,49 @@ echo
 '                       <th>'.SOAL_BLOCK.'</th>'.NL.
 '                   </tr>'.NL;
 
-// TODO: List all resources group has access to
-/*try{
-    $r = $dbc->query('SELECT * FROM '.DB_PRE.'_users WHERE owner='.$userrow['id'].' ORDER BY username')->fetchAll();
+// List all resources group has access to
+try{
+    $qResLookup = $dbc->prepare('SELECT * FROM '.DB_PRE.'_art WHERE id=? AND uid=?');
+    $qTagConLookup = $dbc->prepare('SELECT * FROM '.DB_PRE.'_tagcon WHERE aid=?');
+    $qTagLookup = $dbc->prepare('SELECT * FROM '.DB_PRE.'_tags WHERE id=? AND uid=?');
+    
+    $q = $dbc->prepare('SELECT * FROM '.DB_PRE.'_acon WHERE type=? AND id=?');
+    $q->execute(array(0, $gid));
+    $r = $q->fetchAll();
+    
 }catch(PDOException $e){
     soa_error("Database failure: ".$e->getMessage());
 }
 foreach($r as $value){
-    // get group list of subclient
-    //$r2 = $dbc->query('SELECT * FROM '.DB_PRE.'_users WHERE owner='.$userrow['id'].' ORDER BY username')->fetchAll();
+    try{
+        $qResLookup->execute(array($value['aid'], $grow['owner']));
+        if($qResLookup->rowCount() < 1)
+            continue;
+        $res = $qResLookup->fetchAll()[0];
+        $tags = "";
+        $qTagConLookup->execute(array($res['id']));
+        $tcon = $qTagConLookup->fetchAll();
+        $i = 0;
+        foreach ($tcon as $value2) {
+            $qTagLookup->execute(array($value2['tid'], $grow['owner']));
+            if($qTagLookup->rowCount() < 1)
+                continue;
+            if($i != 0)
+                $tags = $tags . ", ";
+            $tags = $tags . $qTagLookup->fetchAll()[0]['text'];
+            $i ++;
+        }
+    }catch(PDOException $e){
+        soa_error("Database failure: ".$e->getMessage());
+    }
     echo
 '                   <tr>'.NL.
-'                       <td><a href="'.SOA_ROOT.params(array('editor','cg','c',$value['id'])).'">'.$value['username'].'</a></td>'.NL.
-'                       <td>...</td>'.NL.
-'                       <td align="center"><input type="checkbox" value="'.$value['id'].'" name="rmc[]" /></td>'.NL.
+'                       <td><a href="'.SOA_ROOT.params(array('editor','art',$res['id'])).'">'.$res['name'].'</a></td>'.NL.
+'                       <td>'.$tags.'</td>'.NL.
+'                       <td align="center"><input type="checkbox" value="'.$res['id'].'" name="rmr[]" /></td>'.NL.
 '                   <tr>'.NL;
     
-}*/
+}
 
 echo
 '               </table></div><br />'.NL.
