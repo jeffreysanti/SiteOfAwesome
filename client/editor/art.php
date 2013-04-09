@@ -54,12 +54,27 @@ echo
 
 // List all articles
 $r = $aid = $dbc->query('SELECT * FROM '.DB_PRE.'_art WHERE uid='.$userrow['id'].' ORDER BY name DESC')->fetchAll();
+$qTagConLookup = $dbc->prepare('SELECT tid FROM '.DB_PRE.'_tagcon WHERE aid=?');
+$qTagLookup = $dbc->prepare('SELECT text FROM '.DB_PRE.'_tags WHERE id=?');
 foreach($r as $value){
-    // TODO: Get tags implemented
+    // get tags
+    $tags = "";
+    $qTagConLookup->execute(array($value['id']));
+    $tcon = $qTagConLookup->fetchAll();
+    $i = 0;
+    foreach ($tcon as $value2) {
+        $qTagLookup->execute(array($value2['tid']));
+        if($qTagLookup->rowCount() < 1)
+            continue;
+        if($i != 0)
+            $tags = $tags . ", ";
+        $tags = $tags . $qTagLookup->fetchAll()[0][0];
+        $i ++;
+    }
     echo
 '                   <tr>'.NL.
 '                       <td><a href="'.SOA_ROOT.params(array('editor','art',$value['id'])).'">'.$value['name'].'</a></td>'.NL.
-'                       <td></td>'.NL.
+'                       <td>'.$tags.'</td>'.NL.
 '                   <tr>'.NL;
 }
 

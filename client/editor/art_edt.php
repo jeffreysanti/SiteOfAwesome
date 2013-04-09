@@ -83,6 +83,7 @@ if(isset($_POST['submit']))
         }
     }
     // group permission
+    $acc_groups = array();
     if(!isset($_POST['grp'])) $_POST['grp'] = array();
     try{
         $qAddCon = $dbc->prepare('INSERT INTO '.DB_PRE.'_acon (aid, type, id) VALUES (?,?,?)');
@@ -98,7 +99,52 @@ if(isset($_POST['submit']))
             if($qVerifyOwn->rowCount() < 1) // make sure group is owned by user
                 continue;
             $qAddCon->execute(array($artid, 0, $value));
+            array_push($acc_groups, $value);
         }
+    }catch(PDOException $e){
+        soa_error("Database failure: ".$e->getMessage());
+    }
+    
+    // now the difficult subclient permissions :(
+    if(!isset($_POST['blk'])) $_POST['blk'] = array();
+    if(!isset($_POST['alw'])) $_POST['alw'] = array();
+    $acc_clients = array();
+    $acc_blclients = array();
+    try{
+        // remove all old connections
+        $q = $dbc->prepare('DELETE FROM '.DB_PRE.'_acon WHERE aid=? AND type=?');
+        $q->execute(array($artid, 1)); // client allow
+        $q->execute(array($artid, 2)); // client block
+        
+        $qListGroups = $dbc->prepare('SELECT '.DB_PRE.'_groups.name, '.DB_PRE.'_grp_cl.gid FROM '.DB_PRE.'_grp_cl JOIN '.
+                DB_PRE.'_groups ON '.DB_PRE.'_grp_cl.gid = '.DB_PRE.'_groups.id WHERE '.DB_PRE.'_grp_cl.uid=?');
+        $qAddACon = $dbc->prepare('INSERT INTO '.DB_PRE.'_acon (aid, type, id) VALUES (?,?,?)');
+
+
+        // get list of subclients
+        $q = $dbc->prepare('SELECT * FROM '.DB_PRE.'_users WHERE owner=?');
+        $q->execute(array($userrow['id']));
+        $crow = $q->fetchAll();
+        var_dump($_POST['alw']);
+        foreach ($crow as $value) {
+            $cl_groups = array();
+
+            // get group list
+            $qListGroups->execute(array($value['id']));
+            $tmp = $qListGroups->fetchAll();
+            foreach ($tmp as $value2)
+                array_push ($cl_groups, $value2['gid']);
+            
+            echo count(array_intersect($acc_groups, $cl_groups))."|";
+            if(count(array_intersect($acc_groups, $cl_groups)) == 0 && in_array($value['id'], $_POST['alw'])) // allow it
+            {
+                $qAddACon->execute(array($artid, 1, $value['id']));
+            }
+            elseif(count(array_intersect($acc_groups, $cl_groups)) > 0 && in_array($value['id'], $_POST['blk'])) // block it
+            {
+                $qAddACon->execute(array($artid, 2, $value['id']));
+            }
+        }    
     }catch(PDOException $e){
         soa_error("Database failure: ".$e->getMessage());
     }
@@ -157,6 +203,7 @@ echo
 '                   </tr>'.NL;
 
 // List all group access rights
+$acc_groups = array();
 try{
 $q = $dbc->prepare('SELECT '.DB_PRE.'_groups.name, '.DB_PRE.'_groups.id, '.DB_PRE.'_acon.id FROM '.DB_PRE.'_groups '.
         'LEFT JOIN '.DB_PRE.'_acon ON '.DB_PRE.'_groups.id='.DB_PRE.'_acon.id AND '.DB_PRE.'_acon.aid=? AND '.
@@ -169,6 +216,8 @@ $grow = $q->fetchAll();
 
 foreach($grow as $value){
     $chked = $value[1] == $value[2] ? ' checked="1"' : "";
+    if($value[1] == $value[2])
+        array_push ($acc_groups, $value[1]);
     echo
 '                   <tr>'.NL.
 '                       <td><a href="'.SOA_ROOT.params(array('editor','cg','g',$value[1])).'">'.$value[0].'</a></td>'.NL.
@@ -210,16 +259,88 @@ echo
 '                   </tr>'.NL.
 '                   <tr class="divide"><th></th><th></th><th></th><th></th></tr>'.NL;
  
-// TODO List clients&access rights
-/*$r = $aid = $dbc->query('SELECT * FROM '.DB_PRE.'_art WHERE uid='.$userrow['id'].' ORDER BY name DESC')->fetchAll();
-foreach($r as $value){
-    // TODO: Get tags implemented
-    echo
+// List subclients&access rights
+$acc_clients = array();
+$acc_blclients = array();
+try{
+    $qListGroups = $dbc->prepare('SELECT '.DB_PRE.'_groups.name, '.DB_PRE.'_grp_cl.gid FROM '.DB_PRE.'_grp_cl JOIN '.
+            DB_PRE.'_groups ON '.DB_PRE.'_grp_cl.gid = '.DB_PRE.'_groups.id WHERE '.DB_PRE.'_grp_cl.uid=?');
+    $qListACon = $dbc->prepare('SELECT id FROM '.DB_PRE.'_acon WHERE aid=? AND type=?');
+    
+    // get all allowed subclient ids
+    $qListACon->execute(array($artid, 1));
+    $tmp = $qListACon->fetchAll();
+    foreach ($tmp as $value)
+        array_push ($acc_clients, $value[0]);
+    
+    // get all blocked subclients
+    $qListACon->execute(array($artid, 2));
+    $tmp = $qListACon->fetchAll();
+    foreach ($tmp as $value)
+        array_push ($acc_blclients, $value[0]);
+
+    // get list of subclients
+    $q = $dbc->prepare('SELECT * FROM '.DB_PRE.'_users WHERE owner=?');
+    $q->execute(array($userrow['id']));
+    $crow = $q->fetchAll();
+    foreach ($crow as $value) {
+        $cl_groups = array();
+        $cl_groups_names = array();
+        
+        // get group list
+        $qListGroups->execute(array($value['id']));
+        $tmp = $qListGroups->fetchAll();
+        foreach ($tmp as $value2){
+            array_push ($cl_groups, $value2['gid']);
+            array_push ($cl_groups_names, $value2['name']);
+        }
+        
+        if(in_array($value['id'], $acc_blclients)) // client explicity blocked
+        {
+            echo 
+'                   <tr class="blocked">'.NL.
+'                       <th><a href="'.SOA_ROOT.params(array('editor','cg','c',$value['id'])).'">'.$value['name'].' ['.$value['username'].']</a></th>'.NL.
+'                       <th>'.implode(", ", $cl_groups_names).'</th>'.NL.
+'                       <th align="center"><input value="'.$value['id'].'" name="blk[]" type="checkbox" checked="1" /></th>'.NL.
+'                       <th align="center"><input value="'.$value['id'].'" name="alw[]" type="checkbox" disabled="disabled" /></th>'.NL.
+'                   </tr>'.NL;
+
+        }
+        elseif(in_array($value['id'], $acc_clients)) // client explicitly allowed
+        {
+            echo 
+'                   <tr class="added">'.NL.
+'                       <th><a href="'.SOA_ROOT.params(array('editor','cg','c',$value['id'])).'">'.$value['name'].' ['.$value['username'].']</a></th>'.NL.
+'                       <th>'.implode(", ", $cl_groups_names).'</th>'.NL.
+'                       <th align="center"><input value="'.$value['id'].'" name="blk[]" type="checkbox" disabled="disabled" /></th>'.NL.
+'                       <th align="center"><input value="'.$value['id'].'" name="alw[]" type="checkbox" checked="1" /></th>'.NL.
+'                   </tr>'.NL;
+        }
+        elseif(count(array_intersect($acc_groups, $cl_groups)) > 0) // group has access
+        {
+            echo 
 '                   <tr>'.NL.
-'                       <td><a href="'.SOA_ROOT.params(array('editor','art',$value['id'])).'">'.$value['name'].'</a></td>'.NL.
-'                       <td></td>'.NL.
-'                   <tr>'.NL;
-}*/
+'                       <th><a href="'.SOA_ROOT.params(array('editor','cg','c',$value['id'])).'">'.$value['name'].' ['.$value['username'].']</a></th>'.NL.
+'                       <th>'.implode(", ", $cl_groups_names).'</th>'.NL.
+'                       <th align="center"><input value="'.$value['id'].'" name="blk[]" type="checkbox" /></th>'.NL.
+'                       <th align="center"><input value="'.$value['id'].'" name="alw[]" type="checkbox" disabled="disabled" /></th>'.NL.
+'                   </tr>'.NL;
+        }
+        else
+        {
+            echo 
+'                   <tr class="na">'.NL.
+'                       <th><a href="'.SOA_ROOT.params(array('editor','cg','c',$value['id'])).'">'.$value['name'].' ['.$value['username'].']</a></th>'.NL.
+'                       <th>'.implode(", ", $cl_groups_names).'</th>'.NL.
+'                       <th align="center"><input value="'.$value['id'].'" name="blk[]" type="checkbox" disabled="disabled" /></th>'.NL.
+'                       <th align="center"><input value="'.$value['id'].'" name="alw[]" type="checkbox" /></th>'.NL.
+'                   </tr>'.NL;
+        }
+        
+    }
+}catch(PDOException $e){
+    soa_error("Database failure: ".$e->getMessage());
+}
 
 echo
 '               </table></div><br />'.NL.
