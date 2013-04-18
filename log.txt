@@ -45,3 +45,4 @@ Mon, 08 Apr 2013 22:55:13 :: Database failure: SQLSTATE[HY093]: Invalid paramete
 Mon, 08 Apr 2013 22:56:21 :: Database failure: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'owner' in 'where clause'
 Tue, 09 Apr 2013 21:31:46 :: Database failure: SQLSTATE[42000]: Syntax error or access violation: 1066 Not unique table/alias: 'soa_grp_cl'
 Tue, 09 Apr 2013 22:05:05 :: Database failure: SQLSTATE[23000]: Integrity constraint violation: 1048 Column 'id' cannot be null
+Thu, 18 Apr 2013 18:51:22 :: User with unknown type: 2, id: 11

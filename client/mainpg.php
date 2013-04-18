@@ -8,13 +8,14 @@ if(!defined("PG_CLSCL"))
     soa_error("mainpg.php page accessed without permission");
 
 
-writeheader(SOA_TITLEBAR, "main.css");
+writeheader(getSiteDBParam("titlebar", SOA_CLID), "main.css");
 $a = array();
-array_push($a, new menuItem("Home", SOA_ROOT));
-array_push($a, new menuItem("About", SOA_ROOT.params(array("about"))));
-array_push($a, new menuItem("Contact", SOA_ROOT.params(array("contact"))));
-array_push($a, new menuItem("Editor", SOA_ROOT.params(array("editor"))));
-array_push($a, new menuItem("Logout", SOA_ROOT."/logout.php"));
+array_push($a, new menuItem(SOAL_HOME_HOME, SOA_ROOT));
+array_push($a, new menuItem(SOAL_ABOUT, SOA_ROOT.params(array("about"))));
+array_push($a, new menuItem(SOAL_CONTACT, SOA_ROOT.params(array("contact"))));
+if($userrow['type'] == 1)
+    array_push($a, new menuItem(SOAL_EDITOR, SOA_ROOT.params(array("editor"))));
+array_push($a, new menuItem(SOAL_LOGOUT, SOA_ROOT."/logout.php"));
 client_header(SOA_HEAD1, SOA_HEAD2, $a);
 
 client_footer();

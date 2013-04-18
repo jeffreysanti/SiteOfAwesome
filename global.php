@@ -128,6 +128,7 @@ function params(array $a) // constructs paramters on url
 // loads the proper theme into view
 function LoadSiteSettings($num)
 {
+    global $ctypes;
     require("lang/eng_us.php"); // TODO: Support for more languages
     
     $t = getSiteDBParam("theme", $num);
@@ -138,6 +139,14 @@ function LoadSiteSettings($num)
     else{
         define("SOA_THEME", "theme_main");
     }
+    
+    // define contact types:
+    $ctypes = array(0 => SOAL_CT_PHONE,
+                1 => SOAL_CT_FAX,
+                2 => SOAL_CT_ADDR,
+                3 => SOAL_CT_EMAIL,
+                4 => SOAL_CT_WEB,
+                5 => SOAL_CT_ONLINE);
 }
 
 function writeheader($title = "SiteOfAwesome", $cssdoc="main.css", $links=""){

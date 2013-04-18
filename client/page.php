@@ -15,7 +15,16 @@ if($userrow['type'] == 1){
     define("SOA_CLID", $_SESSION['soa_uid']);
     
 }else{
-    //$q = $dbc->prepare("SELECT * FROM ")
+    try{
+        $q = $dbc->prepare('SELECT owner FROM '.DB_PRE.'_users WHERE id=? AND type=?');
+        $q->execute(array($userrow['id'], 2));
+        if($q->rowCount() < 1)
+            soa_error ("Failed to aquire subclient owner-> id:".$userrow['id']);
+        define("SOA_CLID", $q->fetchAll()[0][0]);
+    }catch(PDOException $e){
+        soa_error("Database failure: ".$e->getMessage());
+    }
+    
     // TODO: Handle subclient stuff here
 }
 LoadSiteSettings(SOA_CLID); // loads right theme & stuff
@@ -39,8 +48,15 @@ switch($pg){
         require("editor/page.php");
         break;
     }
+    case "about": {
+        require("about.php");
+        break;
+    }
+    case "contact": {
+        require("contact.php");
+        break;
+    }
     
-    case "m":
     default: {
         require("mainpg.php");
         break;

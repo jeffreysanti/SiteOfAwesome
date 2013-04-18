@@ -72,6 +72,10 @@ switch($userrow['type']){
         require("client/page.php");
         break;
     }
+    case 2:{            // subclient
+        require("client/page.php");
+        break;
+    }
     default:{
         soa_error("User with unknown type: ".$userrow['type'].', id: '.$userrow['id']);
     }

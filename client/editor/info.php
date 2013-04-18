@@ -7,14 +7,6 @@
 if(!defined("PG_CL"))
     soa_error("editor/info.php page accessed without permission");
 
-// define contact types:
-$ctypes = array(0 => SOAL_CT_PHONE,
-                1 => SOAL_CT_FAX,
-                2 => SOAL_CT_ADDR,
-                3 => SOAL_CT_EMAIL,
-                4 => SOAL_CT_WEB,
-                5 => SOAL_CT_ONLINE);
-
 
 if(isset($_POST['submit']))
 {

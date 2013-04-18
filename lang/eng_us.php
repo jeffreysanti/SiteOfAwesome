@@ -108,6 +108,12 @@ define("SOAL_MSG_GROUP_REMOVED", "Group(s) have been removed.");
 define("SOAL_MSG_CLIENT_REMOVED", "Client(s) have been removed.");
 define("SOAL_MSG_CLIENTS_UGROUP", "Client(s) have been ungrouped.");
 
+define("SOAL_HOME_HOME", "Home");
+define("SOAL_CONTACT", "Contact");
+define("SOAL_LOGOUT", "Logout");
+define("SOAL_BASIC_INFO", "Basic Information");
+
+
 // c/g page: help
 define("SOAL_PUBLICVIEWING", "Public Viewing");
 define("SOAL_GROUPS", "Groups");
@@ -121,6 +127,8 @@ define("SOAL_PARA_GROUPS",
 '                        clients. While, you certainly are able to control what an individual client can'.NL.
 '                        or cannot see, groups make it much easier to manage categories of clients. Note that'.NL.
 '                        a particular client\'s access overrides the group access.');
+
+
 
 
 
