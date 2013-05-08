@@ -135,7 +135,6 @@ if(isset($_POST['submit']))
             foreach ($tmp as $value2)
                 array_push ($cl_groups, $value2['gid']);
             
-            echo count(array_intersect($acc_groups, $cl_groups))."|";
             if(count(array_intersect($acc_groups, $cl_groups)) == 0 && in_array($value['id'], $_POST['alw'])) // allow it
             {
                 $qAddACon->execute(array($artid, 1, $value['id']));

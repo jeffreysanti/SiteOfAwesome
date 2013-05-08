@@ -5,7 +5,7 @@
 
 
 define("DB_PRE", "soa");
-define("DB_HOST", "127.0.0.1");
+define("DB_HOST", "127.0.0.1:3307");
 define("DB_NAME", "soa");
 define("DB_USER", "root");
 define("DB_PASS", "");
