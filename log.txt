@@ -74,3 +74,12 @@ Wed, 08 May 2013 20:51:05 :: Database Connection Failure [Check config.php]: SQL
 Wed, 08 May 2013 20:51:07 :: Database Connection Failure [Check config.php]: SQLSTATE[HY000] [2002] Connection refused
 Wed, 08 May 2013 20:51:07 :: Database Connection Failure [Check config.php]: SQLSTATE[HY000] [2002] Connection refused
 Wed, 08 May 2013 21:53:18 :: Database failure: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+Tue, 28 May 2013 20:51:00 :: Database Connection Failure [Check config.php]: SQLSTATE[HY000] [2002] Connection refused
+Tue, 28 May 2013 20:51:05 :: Database Connection Failure [Check config.php]: SQLSTATE[HY000] [2002] Connection refused
+Tue, 28 May 2013 20:51:06 :: Database Connection Failure [Check config.php]: SQLSTATE[HY000] [2002] Connection refused
+Tue, 28 May 2013 20:54:01 :: Database Connection Failure [Check config.php]: SQLSTATE[HY000] [2002] Connection refused
+Tue, 28 May 2013 20:54:02 :: Database Connection Failure [Check config.php]: SQLSTATE[HY000] [2002] Connection refused
+Tue, 28 May 2013 20:54:02 :: Database Connection Failure [Check config.php]: SQLSTATE[HY000] [2002] Connection refused
+Tue, 28 May 2013 21:01:51 :: Database Connection Failure [Check config.php]: SQLSTATE[HY000] [2002] Connection refused
+Tue, 28 May 2013 21:01:52 :: Database Connection Failure [Check config.php]: SQLSTATE[HY000] [2002] Connection refused
+Tue, 28 May 2013 21:01:52 :: Database Connection Failure [Check config.php]: SQLSTATE[HY000] [2002] Connection refused
