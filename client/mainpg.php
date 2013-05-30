@@ -28,22 +28,46 @@ else{
     $pgnum = 1;
 }
 
+$selTags = array();
+if(count($params) > 1){
+    for($i=2; $i<=count($params); $i++){
+        array_push($selTags, $params[$i]);
+    }
+}
+
 define("SOA_ART_PER_PG", 2);
 
 
 try{
     $qTagList = $dbc->prepare('SELECT tid FROM '.DB_PRE.'_tagcon WHERE aid=?');
+    $qTagVerify = $dbc->prepare('SELECT COUNT(*) FROM '.DB_PRE.'_tagcon WHERE aid=? AND tid=?');
+    $qList = $dbc->prepare('SELECT * FROM '.DB_PRE.'_art WHERE uid=?');
     
     // aquire nessesary info
     if($userrow['type'] == 1){ // client -> list all
-        $qList = $dbc->prepare('SELECT * FROM '.DB_PRE.'_art WHERE uid=?');
         $qList->execute(array($userrow['id']));
         $articles = $qList->fetchAll();
-        foreach ($articles as $value) {
+        foreach ($articles as $key => $value) {
+            // check if article in tag filter
+            $ok = true;
+            foreach ($selTags as $tval) {
+                $qTagVerify->execute(array($value['id'], $tval));
+                if($qTagVerify->fetchAll()[0][0] < 1){
+                    $ok = false;
+                    break;
+                }
+            }
+            if(!$ok){ // required tag not included
+                unset($articles[$key]);
+                continue;
+            }
+            
             $value['tags'] = array();
             $qTagList->execute(array($value['id']));
             $r2 = $qTagList->fetchAll();
             foreach($r2 as $value2){
+                if(in_array($value2['tid'], $selTags)) // if selected do not include
+                        continue;
                 @$tags[$value2['tid']] ++;
                 array_push($value['tags'], $value2['tid']);
             }
@@ -57,7 +81,7 @@ try{
         $r = $q->fetchAll();
         $scgrps = array();
         foreach ($r as $value)
-            array_push($scgrps, $value);
+            array_push($scgrps, $value[0]);
         $qList->execute(array($userrow['owner']));
         $articles = $qList->fetchAll();
 
@@ -92,11 +116,29 @@ try{
                 unset($articles[$key]);
                 continue;
             }
+            
+            // check if article in tag filter
+            $ok = true;
+            foreach ($selTags as $tval) {
+                $qTagVerify->execute(array($value['id'], $tval));
+                if($qTagVerify->fetchAll()[0][0] < 1){
+                    $ok = false;
+                    break;
+                }
+            }
+            if(!$ok){ // required tag not included
+                unset($articles[$key]);
+                continue;
+            }
+            
+            
             // get tag list
             $value['tags'] = array();
             $qTagList->execute(array($value['id']));
-            $r = $qTagList->fetchAll();
+            $r2 = $qTagList->fetchAll();
             foreach($r2 as $value2){
+                if(in_array($value2['tid'], $selTags)) // if selected do not include
+                        continue;
                 @$tags[$value2['tid']] ++;
                 array_push($value['tags'], $value2['tid']);
             }
@@ -125,9 +167,23 @@ try{
     echo
 '           <div id="content_sidebar">'.NL;
     
-    if(false){ // TODO: Add tag filtering
+    if(count($selTags) > 0){ // TODO: Add tag filtering
         echo
 '               <div class="content_sideh1">Filtered</div><br />'.NL;
+        
+        foreach ($selTags as $key => $value) {
+            $qTagLookup->execute(array($value));
+            if($qTagLookup->rowCount() < 1)
+                $tname = "-Unkown-";
+            else
+                $tname = $qTagLookup->fetchAll()[0]['text'];
+            
+            $newTags = $selTags;
+            unset($newTags[$key]);
+            array_unshift($newTags, $pgnum);
+            echo
+'               <a href="'.SOA_ROOT.params($newTags).'" class="content_sidebarop">'.$tname.'</a>'.NL;
+        }
 
 // tags
     /*
@@ -150,8 +206,11 @@ try{
             $s = "content_sidebaropxl";
         else $s = "content_sidebaropl";
         
+        $newTags = $selTags;
+        array_push($newTags, $value[1]);
+        array_unshift($newTags, $pgnum);
         echo
-'               <a href="#" class="'.$s.'">'.$value[0].'</a>'.NL;
+'               <a href="'.SOA_ROOT.params($newTags).'" class="'.$s.'">'.$value[0].'</a>'.NL;
     }
 
     echo
