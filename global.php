@@ -4,7 +4,7 @@
  */
 
 // CONFIG INDEPENDENT DEFENITIONS
-define("NL", "\r\n");
+define("NL", "\n");
 
 function ReportNotFound($params)
 {

@@ -245,7 +245,7 @@ try{
 '               <ul id="content_pagesel">'.NL;
     if($pges > $pgnum)
         echo
-'                   <li class="next"><a href="'.SOA_ROOT.params(array($pgnum+1)).'">Next »</a></li>'.NL;
+'                   <li class="next"><a href="'.SOA_ROOT.params(array_merge(array($pgnum+1),$selTags)).'">Next »</a></li>'.NL;
     else
         echo
 '                   <li class="next_none">Next »</li>'.NL;
@@ -256,12 +256,12 @@ try{
 '                   <li class="active">'.$i.'</li>'.NL;
         }else{
             echo
-'                   <li><a href="'.SOA_ROOT.params(array($i)).'">'.$i.'</a></li>'.NL;
+'                   <li><a href="'.SOA_ROOT.params(array_merge(array($i),$selTags)).'">'.$i.'</a></li>'.NL;
         }
     }
     if($pgnum > 1)
         echo
-'                   <li class="prev"><a href="'.SOA_ROOT.params(array($pgnum-1)).'">«Previous</a></li>'.NL;
+'                   <li class="prev"><a href="'.SOA_ROOT.params(array_merge(array($pgnum-1),$selTags)).'">«Previous</a></li>'.NL;
     else
         echo
 '                   <li class="prev_none">«Previous</li>'.NL;

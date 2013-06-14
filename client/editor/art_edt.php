@@ -68,13 +68,16 @@ if(isset($_POST['submit']))
             $tid = -1;
             try {
                 $qTagFind->execute(array($userrow['id'],$value));
+                
                 if($qTagFind->rowCount() > 0){
-                    $tid = $qTagFind->fetchAll()[0][0];
+                    $row = $qTagFind->fetchAll()[0];
+                    $tid = $row[0];
                 }else{ 
                     $qTagIns->execute(array($userrow['id'],$value));
                     
                     $qTagFind->execute(array($userrow['id'],$value));
-                    $tid = $qTagFind->fetchAll()[0][0];
+                    $row = $qTagFind->fetchAll()[0];
+                    $tid = $row[0];
                 }
                 $qTCIns->execute(array($tid, $artid)); // inserts tag connection
             }catch(PDOException $e){
@@ -98,6 +101,7 @@ if(isset($_POST['submit']))
             $qVerifyOwn->execute(array($value, $userrow['id']));
             if($qVerifyOwn->rowCount() < 1) // make sure group is owned by user
                 continue;
+            $qVerifyOwn->closeCursor();
             $qAddCon->execute(array($artid, 0, $value));
             array_push($acc_groups, $value);
         }

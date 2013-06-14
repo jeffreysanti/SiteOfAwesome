@@ -7,6 +7,8 @@ if(defined("SOA_CONFIG_LOADED") || file_exists("config.php"))
     soa_error("Installer.php ran while config loaded or exists!");
 }
 
+define("NL", "\n");
+
 // initialize variables for form
 $instdir = "/";
 $dbname = "";

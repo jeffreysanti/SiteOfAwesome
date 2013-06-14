@@ -37,6 +37,7 @@ function CreateDBTablesMySql(PDO $dbConnection, $prefix)
                 CREATE TABLE IF NOT EXISTS `".$prefix."_groups` (
                `id` int(11) NOT NULL AUTO_INCREMENT,
                `name` varchar(20) NOT NULL,
+               `owner` int(11) NOT NULL,
                PRIMARY KEY (`id`)
              ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1");
         
@@ -103,6 +104,7 @@ function EstablishDataBaseConnection() // establish database connection with pre
 	$dbConnection = new PDO("mysql:dbname=".DB_NAME.";host=".DB_HOST.";charset=utf8", DB_USER, DB_PASS);
 	$dbConnection->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
 	$dbConnection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $dbConnection->setAttribute(PDO::MYSQL_ATTR_USE_BUFFERED_QUERY, true);
     }catch(PDOException $e)
     {
 	soa_error("Database Connection Failure [Check config.php]: ".$e->getMessage());
